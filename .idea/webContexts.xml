@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/alterarCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/alterarSenhaCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/consultarCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Compra/iniciarTroca.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Compra" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Compra/meuCarrinho.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Compra" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Produto/cadastrarVinho.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Produto" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Produto/detalhesVinho.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Produto" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/resposta.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+      </map>
+    </option>
+  </component>
+</project>

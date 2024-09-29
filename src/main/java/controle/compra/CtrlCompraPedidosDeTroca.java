@@ -1,0 +1,100 @@
+package controle.compra;
+
+import dominio.cliente.TpTelefone;
+import dominio.compra.Compra;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
+
+import dominio.compra.Item;
+import dominio.compra.Status;
+import dominio.produto.Vinho;
+import negocio.compra.GeradorCupomDeTroca;
+import persistencia.CarrinhoDAO;
+import persistencia.CompraDAO;
+import persistencia.CupomDAO;
+import persistencia.ProdutoDAO;
+
+public class CtrlCompraPedidosDeTroca extends HttpServlet {
+    private Integer getIntParameter(HttpServletRequest request, String parametro) {
+        String paramValue = request.getParameter(parametro);
+        if (paramValue != null && !paramValue.isEmpty()) {
+            try {
+                return Integer.valueOf(paramValue);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+            try {
+                List<Compra> compras = CompraDAO.listarPedidosDeTroca();
+
+                if (compras != null) {
+                    request.setAttribute("compras", compras);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/Compra/pedidosDeTroca.jsp");
+                    dispatcher.forward(request, response);
+
+                }
+            } catch (Exception e) {
+                throw new ServletException("Erro ao buscar as compras", e);
+            }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer id = getIntParameter(request, "id");
+        String status = request.getParameter("proximoStatus_"+id);
+        Boolean reporEstoque = Boolean.parseBoolean(request.getParameter("reporEstoque_"+id));
+
+        Compra compra = CompraDAO.buscarCompraPorId(id);
+        CompraDAO compraDAO = new CompraDAO();
+
+        compra.setStatus(Status.valueOf(status));
+
+        if (status.equals("EM_TROCA")) {
+            try {
+                compraDAO.alterar(compra);
+                request.setAttribute("mensagem","Pedido em processo de troca.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (status.equals("TROCADO")) {
+            GeradorCupomDeTroca geradorCupomDeTroca = new GeradorCupomDeTroca();
+            geradorCupomDeTroca.processar(compra);
+            try {
+                StringBuilder mensagem = new StringBuilder();
+                compraDAO.alterar(compra);
+                mensagem.append("Troca realizada.");
+                request.setAttribute("mensagem",mensagem);
+
+                if (reporEstoque) {
+                    CarrinhoDAO carrinho = new CarrinhoDAO();
+                    carrinho.reporEstoque(compra.getCarrinho());
+                    mensagem.append(" Os produtos foram repostos no estoque.");
+                    request.setAttribute("mensagem",mensagem);
+                }
+                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+compra.getValorFinal());
+                RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+    }
+
+}

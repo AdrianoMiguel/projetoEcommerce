@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EcommerceVinhoVerso">
+    <output-path>$PROJECT_DIR$/out/artifacts/EcommerceVinhoVerso</output-path>
+    <root id="archive" name="EcommerceVinhoVerso.war" />
+  </artifact>
+</component>
