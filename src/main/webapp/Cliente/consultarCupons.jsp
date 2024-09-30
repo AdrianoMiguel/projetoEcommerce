@@ -72,7 +72,7 @@
                 <br><br>
                 <div class="row justify-content-between">
                     <div class="col-md-4">
-                        <button class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
+                        <button class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
                     </div>
                     <div class="col-md-6">
                         <form action=CtrlClienteCupom method="get">

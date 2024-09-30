@@ -199,7 +199,7 @@
                 <button type="button" class="btn" onclick="adicionarEndereco(1)">Adicionar Endereco de Entrega</button><br>
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <button class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
+                        <button class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-8">

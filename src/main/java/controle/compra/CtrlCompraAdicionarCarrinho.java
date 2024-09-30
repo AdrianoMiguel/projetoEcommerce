@@ -100,6 +100,8 @@ public class CtrlCompraAdicionarCarrinho extends HttpServlet {
                 request.setAttribute("mensagem","Vinho adicionado ao carrinho com sucesso.");
                // HttpSession session = request.getSession();
                // session.setAttribute("carrinho", carrinho);
+                request.setAttribute("id", vinhoId);
+                request.setAttribute("pagina", "CtrlProdutoDetalhes");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {

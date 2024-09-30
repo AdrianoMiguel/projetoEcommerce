@@ -22,10 +22,14 @@
 <div class="background-image">
     <div class="container d-flex justify-content-center align-items-start min-vh-100 py-5">
         <div class="form-container p-4 glass">
+            <form id="formResposta" name="formResposta">
             <p class="text-center mb-4">${mensagem}</p>
             <input type="text" id="mensagem" name="mensagem" value="${mensagem}" hidden>
             <input type="text" id="clienteId" name="clienteId" value="${clienteId}" hidden>
-            <button class="btn" onclick="javascript:window.history.go(-1);">Voltar</button>
+                <input type="text" id="id" name="id" value="${id}" hidden>
+            <input type="text" id="encaminhamento" name="encaminhamento" value="${encaminhamento}" hidden>
+            <button type="button" class="btn" id="botaoVoltar" onclick="retornar('${pagina}')">Voltar</button>
+            </form>
         </div>
 
     </div>

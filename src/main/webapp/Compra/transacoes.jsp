@@ -163,7 +163,7 @@
                         </tbody>
                     </table>
             </div>
-            <button class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
+            <button class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${compras[0].clienteId}'">Voltar</button>
         </div>
     </div>
 </div>

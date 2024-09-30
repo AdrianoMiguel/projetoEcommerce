@@ -30,6 +30,9 @@ public class CtrlClienteCupom  extends HttpServlet {
 
         try {
             request.setAttribute("mensagem", fachada.salvar(cupom));
+            request.setAttribute("id", clienteId);
+            request.setAttribute("encaminhamento", "consultarCupons");
+            request.setAttribute("pagina", "CtrlClienteAlterar");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/resposta.jsp");
             dispatcher.forward(request, response);
 

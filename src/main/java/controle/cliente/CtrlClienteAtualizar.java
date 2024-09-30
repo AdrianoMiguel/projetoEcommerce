@@ -176,7 +176,11 @@ public class CtrlClienteAtualizar extends HttpServlet {
 
             IFachada fachada = new Fachada();
             try {
-                request.setAttribute("mensagem",fachada.alterar(cliente));
+                String mensagem = fachada.alterar(cliente);
+                request.setAttribute("mensagem", mensagem);
+                if (mensagem.equals("Cliente alterado com sucesso!") || mensagem.equals("Registro atualizado com sucesso!")) {
+                    request.setAttribute("pagina", "voltar2");
+                }
                 request.setAttribute("clienteId", cliente.getId());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
