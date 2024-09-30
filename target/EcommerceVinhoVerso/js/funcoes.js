@@ -579,3 +579,17 @@ function naoRepor(compraIdContainer) {
 function Repor(compraIdContainer) {
     document.getElementById('reporEstoque_' + compraIdContainer).value = 'true';
 }
+
+function retornar(resposta) {
+    if (resposta === null || resposta === "") {
+        window.history.back();
+    }
+    else if (resposta === 'voltar2') {
+        window.history.go(-2);
+    }
+    else {
+        document.getElementById('formResposta').action = resposta;
+        document.getElementById('formResposta').method = 'get';
+        document.getElementById('formResposta').submit();
+    }
+}
