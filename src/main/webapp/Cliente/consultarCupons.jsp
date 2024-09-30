@@ -72,12 +72,12 @@
                 <br><br>
                 <div class="row justify-content-between">
                     <div class="col-md-4">
-                        <button class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
+                        <button id="botaoVoltar" class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
                     </div>
                     <div class="col-md-6">
                         <form action=CtrlClienteCupom method="get">
                             <input type="hidden" name="id" value="${cliente.id}">
-                            <button class="btn" type="submit">Novo Cupom</button>
+                            <button id="novoCupomBtn" class="btn" type="submit">Novo Cupom</button>
                         </form>
                     </div>
                 </div>

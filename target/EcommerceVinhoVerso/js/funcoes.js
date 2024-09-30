@@ -261,13 +261,13 @@ function atualizarPreco(produtoId, precoUnitario, novaQuantidade) {
     atualizarTotalCarrinho();
 }
 
-function removerItem(produtoId, precoUnitario) {
+function removerItem(produtoId) {
     // Remove a linha do produto
     const linha = document.getElementById(`linha_` + produtoId);
     linha.parentNode.removeChild(linha);
 
     // Atualiza o total do carrinho
-    atualizarTotalCarrinho(precoUnitario);
+    atualizarTotalCarrinho();
 }
 
 function atualizarTotalCarrinho() {
@@ -320,7 +320,7 @@ function gerarNavbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Index">
+                    <a id="login" class="nav-link" href="Index">
                         ${nomeCliente === 'null' ? 'Fazer Login' : 'Ola, ' + nomeCliente}
                     </a>
                 </li>
@@ -330,7 +330,7 @@ function gerarNavbar() {
 
                 <!-- Carrinho -->
                 <li class="nav-item">
-                    <a class="nav-link" href="CtrlCompraVisualizar">Meu Carrinho</a>
+                    <a id="meuCarrinho" class="nav-link" href="CtrlCompraVisualizar">Meu Carrinho</a>
                 </li>
                 <div id="acessoClienteContainer" ${nomeCliente === null ? '' : ''}>
 
@@ -344,14 +344,14 @@ function gerarNavbar() {
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
                 <h6 class="dropdown-header">Cliente</h6>
-                <a class="dropdown-item" href="CtrlClienteNovo">Cadastrar Cliente</a>
-                <a class="dropdown-item" href="ConsultaCliente">Consultar Cliente</a>
+                <a id="cadastarCliente" class="dropdown-item" href="CtrlClienteNovo">Cadastrar Cliente</a>
+                <a id="consultarCliente" class="dropdown-item" href="ConsultaCliente">Consultar Cliente</a>
                 <div class="dropdown-divider"></div>
                 <h6 class="dropdown-header">Vinho</h6>
-                <a class="dropdown-item" href="CtrlProdutoNovo">Cadastrar Vinho</a>
-                <a class="dropdown-item" href="ConsultaProduto">Consultar Vinho</a>
+                <a id="cadastrarVinho" class="dropdown-item" href="CtrlProdutoNovo">Cadastrar Vinho</a>
+                <a id="consultarVinho" class="dropdown-item" href="ConsultaProduto">Consultar Vinho</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="CtrlCompraPedidosDeTroca">Pedidos De Troca</a>
+                <a id="pedidosDeTroca" class="dropdown-item" href="CtrlCompraPedidosDeTroca">Pedidos De Troca</a>
             </div>
         </li>
         </ul>
@@ -372,11 +372,10 @@ function gerarNavbar() {
                         Cliente
                     </a>
                     <div class="dropdown-menu" aria-labelledby="vinhoDropdown">
-                    <a class="dropdown-item" href="#" onclick="document.getElementById('meusPedidosForm').submit();">Meus Pedidos</a>
+                    <a id="meusPedidos" class="dropdown-item" href="#" onclick="document.getElementById('meusPedidosForm').submit();">Meus Pedidos</a>
                         <form id="meusPedidosForm" action="CtrlCompraTransacoes" method="GET" style="display: none;">
                             <input type="hidden" name="encaminhamento" value="meusPedidos">
                         </form>
-                    <a class="dropdown-item" href="#">Mais</a>
                        `;
     if (nomeCliente !== 'null') {
         container.append(abaCliente);

@@ -78,13 +78,13 @@
                         </table>
                         <div class="form-row col-md-12 justify-content-between d-flex">
                             <div class="form-group col-md-4">
-                                <button type="button"
+                                <button id="trocaParcialBtn" type="button"
                                         onclick="submitFormGeral('CtrlCompraTroca','post','trocaContainer')"
                                         class="btn btn-menor">TROCA PARCIAL
                                 </button>
                             </div>
                             <div class="form-group col-md-4">
-                                <button type="button"
+                                <button id="trocaTotalBtn" type="button"
                                         onclick="submitFormGeral('CtrlCompraPedidosDeTroca','post','trocaContainer')"
                                         class="btn btn-menor">TROCA TOTAL
                                 </button>

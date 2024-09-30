@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn" type="submit">Cadastrar Cupom</button>
+                        <button id="cadastrarCupomBtn" class="btn" type="submit">Cadastrar Cupom</button>
                     </div>
                 </div>
             </form>

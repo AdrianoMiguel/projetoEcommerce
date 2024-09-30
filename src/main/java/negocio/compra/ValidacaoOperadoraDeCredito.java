@@ -19,7 +19,7 @@ public class ValidacaoOperadoraDeCredito implements IStrategy {
             Random random = new Random();
             int randomNumber = random.nextInt(100);
 
-            if (randomNumber < 70) {
+            if (randomNumber < 99) {
                 compra.setStatus(Status.PAGAMENTO_APROVADO);
                 try {
                     fachada.alterar(compra);

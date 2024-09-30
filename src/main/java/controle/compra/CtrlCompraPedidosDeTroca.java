@@ -46,7 +46,9 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
 
                 }
             } catch (Exception e) {
-                throw new ServletException("Erro ao buscar as compras", e);
+                request.setAttribute("mensagem","Não há pedidos de troca.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
+                dispatcher.forward(request, response);
             }
     }
 
@@ -86,7 +88,7 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
                     mensagem.append(" Os produtos foram repostos no estoque.");
                     request.setAttribute("mensagem",mensagem);
                 }
-                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+compra.getValorFinal());
+                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getValorFinal() * -1);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {

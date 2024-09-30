@@ -99,11 +99,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <button class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
+                        <button id="botaoVoltar" class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-8">
-                        <button type="submit" class="btn">CADASTRAR</button>
+                        <button id="cadastrarEndBtn" type="submit" class="btn">CADASTRAR</button>
                     </div>
                 </div>
             </form>

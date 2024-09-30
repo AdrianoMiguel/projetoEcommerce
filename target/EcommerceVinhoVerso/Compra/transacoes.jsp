@@ -63,14 +63,14 @@
                                         <input type="hidden" name="proximoStatus_${compra.id}" value="${compra.proximoStatus}">
                                         <input type="hidden" name="reporEstoque_${compra.id}" id="reporEstoque_${compra.id}" value="">
                                         <c:if test="${compra.status == 'PAGAMENTO_APROVADO' || compra.status == 'EM_TRANSPORTE'}">
-                                            <button type="button"
+                                            <button id="proxStatusBtn_${compra.id}" type="button"
                                                     class="btn btn-menor" onclick="submitFormGeral('CtrlCompraTransacoes','POST','statusContainer_${compra.id}')">${fn:replace(compra.proximoStatus, '_', ' ')}</button>
                                         </c:if>
                                         <c:if test="${compra.proximoStatus == 'TROCADO'}">TROCADO, REPOR?
-                                            <button type="button" class="btn btn-menor ml-1" onclick="Repor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">
+                                            <button id="reporSimBtn_${compra.id}" type="button" class="btn btn-menor ml-1" onclick="Repor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">
                                                 SIM
                                             </button>
-                                            <button type="button" class="btn btn-menor ml-1" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃO
+                                            <button id="reporNaoBtn_${compra.id}" type="button" class="btn btn-menor ml-1" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃO
 
                                             </button>
                                         </c:if>

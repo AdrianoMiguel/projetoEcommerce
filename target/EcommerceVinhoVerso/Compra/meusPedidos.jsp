@@ -54,7 +54,7 @@
                                     <form action="CtrlCompraTroca" method="get">
                                         <input type="hidden" id="compraId" name="compraId" value="${compra.id}">
                                         <c:if test="${compra.status == 'ENTREGUE'}">
-                                            <button type="submit" class="btn btn-menor">SOLICITAR TROCA</button>
+                                            <button id="realizarTroca_${compra.id}" type="submit" class="btn btn-menor">SOLICITAR TROCA</button>
                                         </c:if>
                                     </form>
                                 </td>

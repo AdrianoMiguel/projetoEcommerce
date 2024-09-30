@@ -49,11 +49,20 @@ public class CtrlCompraTransacoes extends HttpServlet {
                 List<Compra> compras = CompraDAO.listarPorClienteId(id);
 
                 if (compras != null) {
+
+                    if (compras.size() == 0) {
+                        request.setAttribute("mensagem","Cliente nao possui nenhuma transacao.");
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
+                        dispatcher.forward(request, response);
+
+                    }
+
                     request.setAttribute("compras", compras);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/Compra/" + encaminhamento + ".jsp");
                     dispatcher.forward(request, response);
 
                 }
+
             } catch (Exception e) {
                 throw new ServletException("Erro ao buscar as compras", e);
             }
@@ -77,6 +86,8 @@ public class CtrlCompraTransacoes extends HttpServlet {
         }
 
         request.setAttribute("mensagem","Status alterado com sucesso!");
+        //request.setAttribute("id", compra.getClienteId());
+        //request.setAttribute("pagina", "CtrlCompraTransacoes");
         RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
         dispatcher.forward(request, response);
 

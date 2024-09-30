@@ -76,7 +76,12 @@ public class CtrlClienteNovoEndEnt extends HttpServlet {
             cliente.setEndEnt(enderecos);
             IFachada fachada = new Fachada();
             try {
-                request.setAttribute("mensagem", fachada.alterar(cliente));
+                String mensagem = fachada.alterar(cliente);
+                request.setAttribute("mensagem", mensagem);
+                if (mensagem.equals("Registro atualizado com sucesso!")) {
+                    request.setAttribute("id", cliente.getId());
+                    request.setAttribute("pagina", "CtrlCompraVisualizar");
+                }
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {

@@ -82,8 +82,8 @@
                         <td id="preco_${item.produto.id}">R$<fmt:formatNumber
                                 value="${item.produto.preco * item.quantidade}" pattern="#,##0.00"/></td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-menor"
-                                    onclick="removerItem(${item.produto.id}, ${item.produto.preco})">Remover
+                            <button id="remover_${item.produto.id}" type="button" class="btn btn-danger btn-menor"
+                                    onclick="removerItem(${item.produto.id})">Remover
                             </button>
                         </td>
                     </tr>
@@ -125,14 +125,14 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <button type="button" class="btn btn-primary btn-menor"
+                        <button id="calcularFreteBtn" type="button" class="btn btn-primary btn-menor"
                                 onclick="calcularFrete()">Calcular Frete
                         </button>
                     </div>
                 </div>
                 <div class="form-row d-flex">
                     <div class="form-group col-md-3">
-                        <button type="button" class="btn btn-menor"
+                        <button id="novoEndereco" type="button" class="btn btn-menor"
                                 onclick="submitFormGeral('CtrlClienteNovoEndEnt','GET','carrinhoForm')">Novo Endereço
                         </button>
                     </div>
@@ -150,7 +150,7 @@
                                    placeholder="Digite seu cupom">
                         </div>
                         <div class="form-group col-md-3">
-                            <button type="button" id=botaoCupom_0 class="btn btn-primary btn-menor" onclick="aplicarCupom(0)">Aplicar
+                            <button type="button" id="botaoCupom_0" class="btn btn-primary btn-menor" onclick="aplicarCupom(0)">Aplicar
                                 Cupom
                             </button>
                         </div>
@@ -192,19 +192,19 @@
                 </div>
                 <div class="form-row d-flex">
                     <div class="form-group col-md-3">
-                        <button type="button" class="btn btn-menor"
+                        <button id="novoCartaoBtn" type="button" class="btn btn-menor"
                                 onclick="submitFormGeral('CtrlClienteNovoCartao','GET','carrinhoForm')">Novo Cartão
                         </button>
                     </div>
                 </div>
                 <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-md-5">
-                        <button type="button" class="btn"
+                        <button id="continuarComprando" type="button" class="btn"
                                 onclick="submitFormGeral('CtrlCompraAtualizarCarrinho', 'GET','carrinhoForm')">Continuar Comprando
                         </button>
                     </div>
                     <div class="form-group col-md-4">
-                        <button type="button" class="btn" onclick="submitFormGeral('CtrlCompraFinalizar', 'POST','carrinhoForm')">
+                        <button id="finalizarCompra" type="button" class="btn" onclick="submitFormGeral('CtrlCompraFinalizar', 'POST','carrinhoForm')">
                             Finalizar Compra
                         </button>
                     </div>

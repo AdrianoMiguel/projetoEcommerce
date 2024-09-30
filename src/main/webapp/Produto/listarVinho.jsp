@@ -69,7 +69,7 @@
 
                             </div>
                             <div class="card-footer text-center">
-                                <a href="CtrlProdutoDetalhes?id=${vinho.id}" class="btn btn-primary btn-block">Ver
+                                <a href="CtrlProdutoDetalhes?id=${vinho.id}" class="btn btn-primary btn-block" id="detalhes_${vinho.id}">Ver
                                     Detalhes</a>
                             </div>
                         </div>

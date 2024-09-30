@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-8">
-                        <button type="submit" class="btn">CADASTRAR</button>
+                        <button id="cadastrarCartaoBtn" type="submit" class="btn">CADASTRAR</button>
                     </div>
                 </div>
             </form>

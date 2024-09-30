@@ -75,7 +75,7 @@
                                     </c:if>
                                 </form>
                                 <form class="d-flex">
-                                <button type="button" class="btn btn-menor ml-1"
+                                <button id="alterar_${cliente.id}" type="button" class="btn btn-menor ml-1"
                                         onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'"><i
                                         class="fa-solid fa-pen-to-square"></i></button>
 

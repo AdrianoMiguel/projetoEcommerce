@@ -1,6 +1,12 @@
 package utils;
 import com.github.javafaker.Faker;
 import dominio.cliente.*;
+import dominio.produto.Vinho;
+import persistencia.ClienteDAO;
+import persistencia.ProdutoDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -55,5 +61,57 @@ public class FakerModificado extends Faker {
 
         // Encontrar o primeiro espaço e remover a primeira palavra
         return logradouro.substring(logradouro.indexOf(" ") + 1);
+    }
+
+    public String cliente() {
+        List<Cliente> clientes = null;
+        try {
+            clientes = ClienteDAO.listar();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String[] nomes = new String[clientes.size()];
+        for (int i = 0; i < clientes.size(); i++) {
+            nomes[i] = clientes.get(i).getNome();
+        }
+        return nomes[new Random().nextInt(nomes.length)];
+    }
+
+    public String idDeCliente() {
+        List<Cliente> clientes = null;
+        try {
+            clientes = ClienteDAO.listar();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String[] ids = new String[clientes.size()];
+        for (int i = 0; i < clientes.size(); i++) {
+            ids[i] = String.valueOf(clientes.get(i).getId());
+        }
+        return ids[new Random().nextInt(ids.length)];
+    }
+
+    public String verDetalhes() {
+        List<Vinho> vinhos = null;
+
+        try {
+            vinhos = ProdutoDAO.listar();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        List<String> ids = new ArrayList<>(); // Lista para armazenar os ids
+
+        for (Vinho vinho : vinhos) {
+            if (vinho.getQtdeEstoque() > 0) {
+                ids.add("detalhes_" + vinho.getId());
+            }
+        }
+
+        if (!ids.isEmpty()) {
+            return ids.get(new Random().nextInt(ids.size()));
+        } else {
+            return null;
+        }
     }
 }

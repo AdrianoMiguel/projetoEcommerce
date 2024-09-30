@@ -9,6 +9,8 @@ public class Factory {
     private final static FakerModificado faker = new FakerModificado();
 
     public static Cliente ClienteTeste() {
+
+
         List<Endereco> endEnt = new ArrayList<>();
         endEnt.add(new Endereco("Endereco de teste de Entrega",
                 faker.tipoDeResidencia(),
@@ -107,7 +109,7 @@ public class Factory {
                 cartoes,
                 faker.internet().password()+"@A1"
                 );
-
+        cliente.setId(Integer.parseInt(faker.idDeCliente()));
         return cliente;
 
     }
