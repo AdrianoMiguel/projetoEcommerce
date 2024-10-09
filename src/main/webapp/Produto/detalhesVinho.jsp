@@ -34,7 +34,7 @@
                 <input type="hidden" id="vinhoId" name="vinhoId" value="${vinho.id}">
                 <div class="form-row">
                     <div class="col-md-4 mb-4 text-center">
-                        <img src="imagens/vinhos/${vinho.id-2}.png" alt="Imagem do vinho ${vinho.nome}"
+                        <img src="imagens/vinhos/${vinho.id}.png" alt="Imagem do vinho ${vinho.nome}"
                              style=" max-height: 350px; object-fit: cover;">
                     </div>
                     <!-- Coluna do conteúdo -->

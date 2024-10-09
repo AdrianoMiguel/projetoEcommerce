@@ -41,7 +41,11 @@ public class Compra1item1cartaoTeste {
         login.click();
         WebElement generoSelect = driver.findElement(By.id("idClienteLogin"));
         Select cliente = new Select(generoSelect);
-        cliente.selectByVisibleText(faker.cliente());
+        try {
+            cliente.selectByVisibleText(faker.cliente());
+        } catch (Exception e) {
+            System.out.println("Não foi possível prosseguir com o teste: " + e.getMessage());
+        }
         WebElement submitButton = driver.findElement(By.id("btnConsultar"));
         submitButton.click();
         WebElement detalhesButton = driver.findElement(By.id(faker.verDetalhes()));

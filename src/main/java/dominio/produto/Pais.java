@@ -9,5 +9,7 @@ public enum Pais {
     Franca,
     Italia,
     Espanha,
-    Portugal
+    Portugal,
+    Nova_Zelandia,
+    Africa_do_Sul
 }

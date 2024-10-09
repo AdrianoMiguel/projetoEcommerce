@@ -5,6 +5,7 @@ import dominio.cliente.Cliente;
 import persistencia.ClienteDAO;
 import persistencia.ProdutoDAO;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,13 @@ public class CtrlProdutoListar extends HttpServlet {
         }
 
         Fachada fachada = new Fachada();
-        request.setAttribute("vinhos", fachada.listarVinhos());
+        try {
+            request.setAttribute("vinhos", fachada.listarVinhos());
+        } catch (Exception e) {
+            request.setAttribute("mensagem","Não há vinhos cadastrados");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
+            dispatcher.forward(request, response);
+        }
         request.getRequestDispatcher("/Produto/listarVinho.jsp").forward(request, response);
     }
 

@@ -109,7 +109,12 @@ public class Factory {
                 cartoes,
                 faker.internet().password()+"@A1"
                 );
-        cliente.setId(Integer.parseInt(faker.idDeCliente()));
+        try {
+            int id = Integer.parseInt(faker.idDeCliente());
+            cliente.setId(id);
+        } catch (Exception e) {
+            System.out.println("Erro ao atribuir ID: " + e.getMessage());
+        }
         return cliente;
 
     }

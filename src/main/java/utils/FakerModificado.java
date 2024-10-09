@@ -63,13 +63,11 @@ public class FakerModificado extends Faker {
         return logradouro.substring(logradouro.indexOf(" ") + 1);
     }
 
-    public String cliente() {
+    public String cliente() throws Exception {
         List<Cliente> clientes = null;
-        try {
+
             clientes = ClienteDAO.listar();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
         String[] nomes = new String[clientes.size()];
         for (int i = 0; i < clientes.size(); i++) {
             nomes[i] = clientes.get(i).getNome();
@@ -77,13 +75,11 @@ public class FakerModificado extends Faker {
         return nomes[new Random().nextInt(nomes.length)];
     }
 
-    public String idDeCliente() {
+    public String idDeCliente() throws Exception {
         List<Cliente> clientes = null;
-        try {
+
             clientes = ClienteDAO.listar();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
         String[] ids = new String[clientes.size()];
         for (int i = 0; i < clientes.size(); i++) {
             ids[i] = String.valueOf(clientes.get(i).getId());

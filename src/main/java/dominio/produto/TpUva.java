@@ -22,5 +22,6 @@ public enum TpUva {
     ALBARINO,
     CHENIN_BLANC,
     SEMILLON,
-    BONARDA
+    BONARDA,
+    TORRONTES
 }

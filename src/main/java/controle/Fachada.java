@@ -154,22 +154,17 @@ public class Fachada implements IFachada {
         return vinhos;
     }
 
-    public List<Vinho> listarVinhos() {
+    public List<Vinho> listarVinhos() throws Exception {
         List<Vinho> vinhos = null;
-        try {
             vinhos = ProdutoDAO.listar();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
         return vinhos;
     }
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listarClientes() throws Exception {
         List<Cliente> clientes = null;
-        try {
+
             clientes = ClienteDAO.listar();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
         return clientes;
     }
 

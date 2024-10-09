@@ -147,7 +147,7 @@ public class ProdutoDAO extends ConexaoBD implements IDAO {
         try (Connection conexao = getConexao()) {
             String query = """
         
-                    CREATE TABLE IF NOT EXISTS vinhos (
+               CREATE TABLE IF NOT EXISTS vinhos (
             id BIGSERIAL PRIMARY KEY,
             nome VARCHAR(100),
             safra INTEGER,
@@ -156,8 +156,8 @@ public class ProdutoDAO extends ConexaoBD implements IDAO {
             tipo_vinho VARCHAR(50),
             tipo_uva VARCHAR(255), -- Usando VARCHAR para armazenar uma lista de tipos de uva, separadas por vírgula
             pais VARCHAR(50),
-            maior_custo DECIMAL(10, 2),
-            preco DECIMAL(10, 2),
+            maior_custo DOUBLE PRECISION,
+            preco DOUBLE PRECISION,
             qtde_estoque INTEGER,
             grupo_precificacao VARCHAR(50),
             cod_barras VARCHAR(13),
@@ -166,7 +166,7 @@ public class ProdutoDAO extends ConexaoBD implements IDAO {
             motivoCategoria VARCHAR(255) NOT NULL,    
             justificativa TEXT NOT NULL,
             dtSemEstoque TIMESTAMP
-        );
+        );     
         """;
                 try (PreparedStatement stmt = conexao.prepareStatement(query)) {
                     stmt.executeUpdate();

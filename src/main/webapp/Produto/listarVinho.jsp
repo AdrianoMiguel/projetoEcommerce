@@ -48,7 +48,7 @@
                             <div class="row no-gutters">
                                 <!-- Coluna da imagem -->
                                 <div class="col-md-4">
-                                    <img src="imagens/vinhos/${vinho.id-2}.png" class="card-img"
+                                    <img src="imagens/vinhos/${vinho.id}.png" class="card-img"
                                          alt="Imagem do vinho ${vinho.nome}">
                                 </div>
                                 <!-- Coluna do conteúdo -->
