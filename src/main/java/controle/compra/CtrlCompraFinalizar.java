@@ -187,8 +187,12 @@ public class CtrlCompraFinalizar extends HttpServlet {
 
 
             String mensagem = fachada.salvar(compra);
-            if (mensagem.equals("Registro realizado com sucesso!") && compra.getValorFinal() < 0) {
-                mensagem += "Um cupom de crédito no valor de R$" + (compra.getValorFinal() * (-1)) + " foi gerado para você! Utilize o código CREDITO"+compra.getCarrinho().getId()+" para descontar em sua próxima compra.";
+            if (mensagem.equals("Registro realizado com sucesso!")) {
+                request.setAttribute("pagina", "CtrlProdutoListar");
+                if (compra.getValorFinal() < 0) {
+                    mensagem += "Um cupom de crédito no valor de R$" + (compra.getValorFinal() * (-1)) + " foi gerado para você! Utilize o código CREDITO"+compra.getCarrinho().getId()+" para descontar em sua próxima compra.";
+                }
+
             }
             try {
                 request.setAttribute("mensagem", mensagem);

@@ -49,6 +49,7 @@ public class Fachada implements IFachada {
             List<IStrategy> rnCupom = new ArrayList();
 
             List<IStrategy> rnCompra = new ArrayList();
+            rnCompra.add(new ValidadorUsoDeCartoes());
             rnCompra.add(new ValidadorPagamentoTotal());
             rnCompra.add(new ValidadorDeUsoDeCupons());
             rnCompra.add(new ValorMinimoCartaoComCupons());
@@ -56,7 +57,7 @@ public class Fachada implements IFachada {
             rnCompra.add(new AtualizadorDeEstoque());
             rnCompra.add(new AtualizadorDeCupons());
             rnCompra.add(new GeradorCupomDeTroca());
-            //rnCompra.add(new RankeadorDeCliente());
+            rnCompra.add(new RankeadorDeCliente());
 
             this.RegrasEReq.put(Log.class.getName(), rnLogs);
             this.RegrasEReq.put(Cliente.class.getName(), rnClientes);

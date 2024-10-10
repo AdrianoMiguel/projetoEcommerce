@@ -18,7 +18,7 @@ public class ValidadorPagamentoTotal implements IStrategy {
         Double valorTotal = compra.getValorFinal();
         Double valorPago = 0.0;
 
-        if (compra.getValorFinal() >= 0){
+        if (compra.getValorFinal() > 0){
 
             for (int i = 0; i < compra.getPagamentos().size(); i++) {
                 if (compra.getPagamentos().get(i).getValor() == null) {
