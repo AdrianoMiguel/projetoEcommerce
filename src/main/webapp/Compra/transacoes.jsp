@@ -143,9 +143,7 @@
                                                 </tr>
                                             </c:forEach>
                                         </c:if>
-                                        <tr>
-                                            <th>Cliente: ${compra.}</th>
-                                        </tr>
+
                                         <tr>
                                             <th>Endereço de Entrega:</th>
                                         </tr>

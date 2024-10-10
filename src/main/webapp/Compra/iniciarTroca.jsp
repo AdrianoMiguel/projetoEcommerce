@@ -62,7 +62,7 @@
                                         </tr>
                                         <c:forEach var="item" items="${compra.carrinho.itens}">
                                             <tr>
-                                                <td><input type="checkbox" name="itensSelecionados" id="item_${item.id}" value="${item.id}">
+                                                <td><input type="checkbox" name="itensSelecionados" id="item_${item.id}" value="${item.id}" onchange="verificarSelecaoParcial()">
                                                 </td>
                                                 <td>${item.produto.nome}</td>
                                                 <td>${item.quantidade}</td>
@@ -80,7 +80,7 @@
                             <div class="form-group col-md-4">
                                 <button id="trocaParcialBtn" type="button"
                                         onclick="submitFormGeral('CtrlCompraTroca','post','trocaContainer')"
-                                        class="btn btn-menor">TROCA PARCIAL
+                                        class="btn btn-menor" disabled>TROCA PARCIAL
                                 </button>
                             </div>
                             <div class="form-group col-md-4">

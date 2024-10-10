@@ -256,6 +256,7 @@ function preencherCartoes(cartoes) {
 function atualizarPreco(produtoId, precoUnitario, novaQuantidade) {
     const precoProduto = precoUnitario * novaQuantidade;
     document.getElementById(`preco_` + produtoId).innerHTML = `R$` + precoProduto.toFixed(2);
+    document.getElementById(`precoHidden_` + produtoId).value = precoProduto;
 
     // Atualiza o total do carrinho
     atualizarTotalCarrinho();
@@ -274,16 +275,8 @@ function atualizarTotalCarrinho() {
     let totalCarrinho = 0;
 
     // Soma os valores dos itens no carrinho
-    document.querySelectorAll('[id^="preco_"]').forEach(function (element) {
-        let precoAtualStr = element.innerHTML.replace('R$', '').trim();
-
-        // Se o valor contiver ',', substitua os '.' por '', e a ',' por '.'
-        if (precoAtualStr.includes(',')) {
-            precoAtualStr = precoAtualStr.replace(/\./g, '').replace(',', '.');
-        }
-
-        // Converta a string ajustada para float
-        const precoAtual = parseFloat(precoAtualStr);
+    document.querySelectorAll('[id^="precoHidden_"]').forEach(function (element) {
+        let precoAtual = parseFloat(element.value);
 
         totalCarrinho += precoAtual;
     });
@@ -590,5 +583,25 @@ function retornar(resposta) {
         document.getElementById('formResposta').action = resposta;
         document.getElementById('formResposta').method = 'get';
         document.getElementById('formResposta').submit();
+    }
+}
+
+function verificarSelecaoParcial() {
+    const checkboxes = document.querySelectorAll('input[name="itensSelecionados"]');
+    const trocaParcialBtn = document.getElementById("trocaParcialBtn");
+
+    let totalSelecionados = 0;
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            totalSelecionados++;
+        }
+    });
+
+    // Verifica se a seleção é parcial
+    if (totalSelecionados > 0 && totalSelecionados < checkboxes.length) {
+        trocaParcialBtn.disabled = false;
+    } else {
+        trocaParcialBtn.disabled = true;
     }
 }

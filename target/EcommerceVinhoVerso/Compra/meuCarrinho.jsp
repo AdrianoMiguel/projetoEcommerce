@@ -81,6 +81,8 @@
                         </td>
                         <td id="preco_${item.produto.id}">R$<fmt:formatNumber
                                 value="${item.produto.preco * item.quantidade}" pattern="#,##0.00"/></td>
+                        <input type="hidden" id="precoHidden_${item.produto.id}" name="precoHidden_${item.produto.id}"
+                               value="${item.produto.preco * item.quantidade}">
                         <td>
                             <button id="remover_${item.produto.id}" type="button" class="btn btn-danger btn-menor"
                                     onclick="removerItem(${item.produto.id})">Remover
