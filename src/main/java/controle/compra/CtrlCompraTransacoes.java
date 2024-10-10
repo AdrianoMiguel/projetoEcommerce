@@ -86,8 +86,9 @@ public class CtrlCompraTransacoes extends HttpServlet {
         }
 
         request.setAttribute("mensagem","Status alterado com sucesso!");
-        //request.setAttribute("id", compra.getClienteId());
-        //request.setAttribute("pagina", "CtrlCompraTransacoes");
+        request.setAttribute("id", compra.getClienteId());
+        request.setAttribute("pagina", "CtrlCompraTransacoes");
+        request.setAttribute("encaminhamento", "transacoes");
         RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
         dispatcher.forward(request, response);
 

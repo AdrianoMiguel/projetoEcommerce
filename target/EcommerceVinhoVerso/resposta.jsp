@@ -26,6 +26,7 @@
             <p class="text-center mb-4">${mensagem}</p>
             <input type="text" id="mensagem" name="mensagem" value="${mensagem}" hidden>
             <input type="text" id="clienteId" name="clienteId" value="${clienteId}" hidden>
+                <input type="text" id="compraId" name="compraId" value="${compraId}" hidden>
                 <input type="text" id="id" name="id" value="${id}" hidden>
             <input type="text" id="encaminhamento" name="encaminhamento" value="${encaminhamento}" hidden>
             <button type="button" class="btn" id="botaoVoltar" onclick="retornar('${pagina}')">Voltar</button>

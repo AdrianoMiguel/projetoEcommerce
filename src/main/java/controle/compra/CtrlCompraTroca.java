@@ -93,6 +93,8 @@ public class CtrlCompraTroca extends HttpServlet {
         try {
             compraDAO.salvar(pedidoTrocaParcial);
             request.setAttribute("mensagem","Pedido em processo de troca.");
+            request.setAttribute("encaminhamento","meusPedidos");
+            request.setAttribute("pagina","CtrlCompraTransacoes");
             RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {

@@ -66,6 +66,8 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
             try {
                 compraDAO.alterar(compra);
                 request.setAttribute("mensagem","Pedido em processo de troca.");
+                request.setAttribute("encaminhamento","meusPedidos");
+                request.setAttribute("pagina","CtrlCompraTransacoes");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
@@ -88,7 +90,7 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
                     mensagem.append(" Os produtos foram repostos no estoque.");
                     request.setAttribute("mensagem",mensagem);
                 }
-                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getValorFinal() * -1);
+                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getValorFinal());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
