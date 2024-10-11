@@ -175,8 +175,13 @@ public class Compra2itens2cartoesEndNovoCartNovoTeste {
         List<WebElement> opcoes6 = cartoes_0.getOptions();
         int indexAleatorio6 = new Random().nextInt(opcoes6.size());
         cartoes_0.selectByIndex(indexAleatorio6);
-        driver.findElement(By.id("valor_cartao_0")).sendKeys("10");
-
+        if (Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value")) > 0) {
+            if (Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value")) > 10) {
+                driver.findElement(By.id("valor_cartao_0")).sendKeys("10");
+            } else {
+                driver.findElement(By.id("valor_cartao_0")).sendKeys(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value"));
+            }
+        }
         WebElement adicionarCartaoBtn = driver.findElement(By.id("adicionarCartaoBtn"));
         adicionarCartaoBtn.click();
         WebElement cartao_1 = driver.findElement(By.id("cartao_1"));
@@ -185,8 +190,9 @@ public class Compra2itens2cartoesEndNovoCartNovoTeste {
         List<WebElement> opcoes7 = cartoes_1.getOptions();
         int indexAleatorio7 = new Random().nextInt(opcoes7.size());
         cartoes_1.selectByIndex(indexAleatorio7);
-        driver.findElement(By.id("valor_cartao_1")).sendKeys(String.valueOf (Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value"))-10));
-
+        if ((Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value")) - 10) > 0) {
+            driver.findElement(By.id("valor_cartao_1")).sendKeys(String.valueOf(Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value")) - 10));
+        }
 
         WebElement finalizarCompra = driver.findElement(By.id("finalizarCompra"));
         finalizarCompra.click();
@@ -246,14 +252,16 @@ public class Compra2itens2cartoesEndNovoCartNovoTeste {
         WebElement pedidosdeTroca = driver.findElement(By.id("pedidosdeTroca"));
         pedidosdeTroca.click();
 
-//        WebElement reporSim = driver.findElement(By.xpath("//*[contains(@id, 'reporSimBtn_')]"));
-//        reporSim.click();
+        WebElement reporSim = driver.findElement(By.xpath("//*[contains(@id, 'reporSimBtn_')]"));
+        reporSim.click();
 
-//        WebElement clienteDropdown3 = driver.findElement(By.id("clienteDropdown"));
- //       clienteDropdown3.click();
+        WebElement clienteDropdown3 = driver.findElement(By.id("clienteDropdown"));
+        clienteDropdown3.click();
 
- //       WebElement meusPedidos3 = driver.findElement(By.id("meusPedidos"));
- //       meusPedidos3.click();
+        WebElement meusPedidos3 = driver.findElement(By.id("meusPedidos"));
+        meusPedidos3.click();
+
+
 
 
 

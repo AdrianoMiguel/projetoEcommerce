@@ -67,10 +67,10 @@
                                                     class="btn btn-menor" onclick="submitFormGeral('CtrlCompraTransacoes','POST','statusContainer_${compra.id}')">${fn:replace(compra.proximoStatus, '_', ' ')}</button>
                                         </c:if>
                                         <c:if test="${compra.proximoStatus == 'TROCADO'}">TROCADO, REPOR?
-                                            <button type="button" class="btn btn-menor ml-1" onclick="Repor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">
+                                            <button type="button" class="btn btn-menor ml-1" id="reporSimBtn_${compra.id}" onclick="Repor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">
                                                 SIM
                                             </button>
-                                            <button type="button" class="btn btn-menor ml-1" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃO
+                                            <button type="button" class="btn btn-menor ml-1" id="reporNaoBtn_${compra.id}" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃO
 
                                             </button>
                                         </c:if>

@@ -27,7 +27,7 @@
             <h3 class="text-center mb-4">NOVO CUPOM</h3>
 
 
-            <form action=CtrlClienteCupom method="post" id="clienteForm">
+            <form action=CtrlClienteCupom method="post" id="cupomForm">
                 <input type="hidden" name="id" value="${clienteId}">
                 <div class="form-row justify-content-between">
                     <div class="form-group col-md-5">

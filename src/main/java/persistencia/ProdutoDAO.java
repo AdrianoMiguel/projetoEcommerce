@@ -219,20 +219,20 @@ public class ProdutoDAO extends ConexaoBD implements IDAO {
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM vinhos WHERE ");
 
             for (int i = 0; i < palavrasFiltro.length; i++) {
-                queryBuilder.append("(LOWER(nome) ILIKE ? OR ")
+                queryBuilder.append("(UNACCENT(nome) ILIKE UNACCENT(?) OR ")
                         .append("CAST(safra AS TEXT) ILIKE ? OR ")
                         .append("CAST(teor_alcoolico AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(descricao) ILIKE ? OR ")
-                        .append("LOWER(tipo_vinho) ILIKE ? OR ")
-                        .append("LOWER(tipo_uva) ILIKE ? OR ")
-                        .append("LOWER(pais) ILIKE ? OR ")
+                        .append("UNACCENT(descricao) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(tipo_vinho) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(tipo_uva) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(pais) ILIKE UNACCENT(?) OR ")
                         .append("CAST(preco AS TEXT) ILIKE ? OR ")
                         .append("LOWER(grupo_precificacao) ILIKE ? OR ")
                         .append("LOWER(cod_barras) ILIKE ? OR ")
                         .append("CAST(volume AS TEXT) ILIKE ? OR ")
                         .append("CAST(status AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(motivoCategoria) ILIKE ? OR ")
-                        .append("LOWER(justificativa) ILIKE ?)");
+                        .append("UNACCENT(motivoCategoria) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(justificativa) ILIKE UNACCENT(?))");
                 if (i < palavrasFiltro.length - 1) {
                     queryBuilder.append(" AND ");
                 }

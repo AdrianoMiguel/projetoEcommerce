@@ -119,7 +119,7 @@ public class ClienteDAO extends ConexaoBD implements IDAO {
                     "endResid_bairro=?, endResid_cidade=?, endResid_estado=?, endResid_pais=?, endResid_cep=?, endResid_obs=?, " +
                     "endCob_tiporesid=?, endCob_tipolograd=?, endCob_logradouro=?, endCob_numero=?, endCob_bairro=?, " +
                     "endCob_cidade=?, endCob_estado=?, endCob_pais=?, endCob_cep=?, endCob_obs=?, " +
-                    "contato_email=?, contato_tipotel=?, contato_ddd=?, contato_numerotel=?, senha=?, status=? WHERE id=?";
+                    "contato_email=?, contato_tipotel=?, contato_ddd=?, contato_numerotel=?, senha=?, status=?, ranking=? WHERE id=?";
 
             PreparedStatement sql = conexao.prepareStatement(query);
             sql.setString(1, cliente.getNome());
@@ -156,7 +156,8 @@ public class ClienteDAO extends ConexaoBD implements IDAO {
             sql.setString(29, cliente.getSenha());
             sql.setBoolean(30,cliente.getStatus());
 
-            sql.setInt(31, cliente.getId());
+            sql.setInt(31,cliente.getRanking());
+            sql.setInt(32, cliente.getId());
             sql.executeUpdate();
 
             // Atualizar cartões
@@ -478,34 +479,34 @@ public class ClienteDAO extends ConexaoBD implements IDAO {
             StringBuilder queryBuilder = new StringBuilder("SELECT * FROM clientes WHERE ");
 
             for (int i = 0; i < palavrasFiltro.length; i++) {
-                queryBuilder.append("(LOWER(nome) ILIKE ? OR ")
-                        .append("LOWER(cpf) ILIKE ? OR ")
-                        .append("LOWER(genero) ILIKE ? OR ")
-                        .append("CAST(dataNascimento AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(endResid_tiporesid) ILIKE ? OR ")
-                        .append("LOWER(endResid_tipolograd) ILIKE ? OR ")
-                        .append("LOWER(endResid_logradouro) ILIKE ? OR ")
-                        .append("CAST(endResid_numero AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(endResid_bairro) ILIKE ? OR ")
-                        .append("LOWER(endResid_cidade) ILIKE ? OR ")
-                        .append("LOWER(endResid_estado) ILIKE ? OR ")
-                        .append("LOWER(endResid_pais) ILIKE ? OR ")
-                        .append("LOWER(endResid_cep) ILIKE ? OR ")
-                        .append("LOWER(endResid_obs) ILIKE ? OR ")
-                        .append("LOWER(endCob_tiporesid) ILIKE ? OR ")
-                        .append("LOWER(endCob_tipolograd) ILIKE ? OR ")
-                        .append("LOWER(endCob_logradouro) ILIKE ? OR ")
-                        .append("CAST(endCob_numero AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(endCob_bairro) ILIKE ? OR ")
-                        .append("LOWER(endCob_cidade) ILIKE ? OR ")
-                        .append("LOWER(endCob_estado) ILIKE ? OR ")
-                        .append("LOWER(endCob_pais) ILIKE ? OR ")
-                        .append("LOWER(endCob_cep) ILIKE ? OR ")
-                        .append("LOWER(endCob_obs) ILIKE ? OR ")
-                        .append("LOWER(contato_email) ILIKE ? OR ")
-                        .append("LOWER(contato_tipotel) ILIKE ? OR ")
-                        .append("CAST(contato_ddd AS TEXT) ILIKE ? OR ")
-                        .append("LOWER(contato_numerotel) ILIKE ?)");
+                queryBuilder.append("(UNACCENT(nome) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(cpf) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(genero) ILIKE UNACCENT(?) OR ")
+                        .append("CAST(dataNascimento AS TEXT) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_tiporesid) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_tipolograd) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_logradouro) ILIKE UNACCENT(?) OR ")
+                        .append("CAST(endResid_numero AS TEXT) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_bairro) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_cidade) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_estado) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_pais) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_cep) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endResid_obs) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_tiporesid) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_tipolograd) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_logradouro) ILIKE UNACCENT(?) OR ")
+                        .append("CAST(endCob_numero AS TEXT) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_bairro) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_cidade) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_estado) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_pais) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_cep) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(endCob_obs) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(contato_email) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(contato_tipotel) ILIKE UNACCENT(?) OR ")
+                        .append("CAST(contato_ddd AS TEXT) ILIKE UNACCENT(?) OR ")
+                        .append("UNACCENT(contato_numerotel) ILIKE UNACCENT(?))");
                 if (i < palavrasFiltro.length - 1) {
                     queryBuilder.append(" AND ");
                 }

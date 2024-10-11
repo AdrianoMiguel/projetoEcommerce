@@ -14,9 +14,14 @@ import java.util.List;
 public class RankeadorDeCliente implements IStrategy {
     public String processar(EntidadeDominio entidade) {
         Compra compra = (Compra) entidade;
-        Cliente cliente = new Cliente(compra.getClienteId());
-        cliente.setRanking(cliente.getRanking() + 1);
         ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente = null;
+        try {
+            cliente = ClienteDAO.buscarClientePorId(compra.getClienteId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        cliente.setRanking(cliente.getRanking() + 1);
         try {
             clienteDAO.alterar(cliente);
         } catch (Exception e) {

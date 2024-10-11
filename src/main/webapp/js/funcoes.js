@@ -503,6 +503,7 @@ function aplicarCupom(numeroCupom) {
 
 
             document.getElementById(`botaoCupom_${numeroCupom}`).disabled = true;
+            document.getElementById(`botaoCupom_${numeroCupom}`).innerText = "APLICADO";
             document.getElementById(`cupom_${numeroCupom}`).disabled = true;
             document.getElementById('adicionarCupomBtn').disabled = false;
             // Atualiza o valor total do carrinho
