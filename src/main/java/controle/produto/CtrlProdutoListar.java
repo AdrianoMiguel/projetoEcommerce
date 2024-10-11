@@ -2,7 +2,9 @@ package controle.produto;
 
 import controle.Fachada;
 import dominio.cliente.Cliente;
+import dominio.compra.Notificacao;
 import persistencia.ClienteDAO;
+import persistencia.NotificacaoDAO;
 import persistencia.ProdutoDAO;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+import java.util.List;
 
 
 public class CtrlProdutoListar extends HttpServlet {
@@ -31,12 +33,25 @@ public class CtrlProdutoListar extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer idCliente = getIntParameter(request, "idClienteLogin");
+        List<Notificacao> notificacoes = null;
         if (idCliente != null) {
             try {
                 Cliente cliente = ClienteDAO.buscarClientePorId(idCliente);
                 HttpSession session = request.getSession();
                 session.setAttribute("idCliente", cliente.getId());
                 session.setAttribute("nomeCliente", cliente.getNome().split(" ")[0]);
+                NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+
+                try {
+                    notificacoes = notificacaoDAO.listar(cliente.getId());
+                    if (notificacoes != null) {
+                        request.setAttribute("notificacoes", notificacoes);
+                        for (Notificacao n : notificacoes) {
+                            notificacaoDAO.excluir(n);
+                        }
+                    }
+                } catch (Exception e) {
+                }
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -55,7 +70,6 @@ public class CtrlProdutoListar extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Fachada fachada = new Fachada();
         try {
             request.setAttribute("vinhos", ProdutoDAO.listar(request.getParameter("filtro")));
         } catch (Exception e) {

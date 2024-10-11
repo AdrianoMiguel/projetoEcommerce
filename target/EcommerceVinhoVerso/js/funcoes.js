@@ -318,7 +318,8 @@ function gerarNavbar() {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="CtrlProdutoListar">Vinhos</a>
+                    <a class="nav-link" href="#" onclick="document.getElementById('listarVinhosForm').submit()">Vinhos</a>
+                    <form id="listarVinhosForm" action="CtrlProdutoListar" method="GET" style="display: none;"></form>
                 </li>
 
                 <!-- Carrinho -->
@@ -369,6 +370,8 @@ function gerarNavbar() {
                         <form id="meusPedidosForm" action="CtrlCompraTransacoes" method="GET" style="display: none;">
                             <input type="hidden" name="encaminhamento" value="meusPedidos">
                         </form>
+                        <a id="logout" class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                        <form id="logoutForm" action="Logout" method="GET" style="display: none;"></form>
                        `;
     if (nomeCliente !== 'null') {
         container.append(abaCliente);
@@ -604,5 +607,21 @@ function verificarSelecaoParcial() {
         trocaParcialBtn.disabled = false;
     } else {
         trocaParcialBtn.disabled = true;
+    }
+}
+
+function abrirModal() {
+    const modal = new bootstrap.Modal(document.getElementById('notificacoesModal'), {});
+    const notificacoesContainer = document.getElementById("notificacoesContainer");
+
+    // Limpa o conteúdo atual e adiciona cada notificação
+    notificacoesContainer.innerHTML = "";
+    if (notificacoes.length > 0) {
+        notificacoes.forEach(function(notificacao) {
+            const p = document.createElement("p");
+            p.textContent = notificacao.mensagem;
+            notificacoesContainer.appendChild(p);
+        });
+        modal.show();
     }
 }

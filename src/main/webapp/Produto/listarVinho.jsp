@@ -5,6 +5,20 @@
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
     const idCliente = '${sessionScope.idCliente != null ? sessionScope.idCliente : "null"}';
+    const notificacoes = [
+        <c:forEach var="notificacao" items="${notificacoes}">
+        {
+            id: ${notificacao.id},
+            mensagem: '${notificacao.mensagem}'
+        }<c:if test="${!status.last}">, </c:if>
+        </c:forEach>
+    ];
+
+    window.onload = function() {
+        if (notificacoes.length > 0) {
+            abrirModal();
+        }
+    }
 </script>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -20,6 +34,19 @@
 </head>
 <body>
 <div id="navbarContainer"></div>
+<!-- Modal -->
+<div class="modal fade" id="notificacoesModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">NOTIFICAÇÕES</h5>
+            </div>
+            <div class="modal-body" id="notificacoesContainer">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="background-image">
     <div class="container d-flex justify-content-center align-items-start min-vh-100 py-5">
         <div class="form-container my-5 form-h-100">

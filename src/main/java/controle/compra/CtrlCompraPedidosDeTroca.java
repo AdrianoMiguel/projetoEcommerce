@@ -13,11 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 import dominio.compra.Item;
+import dominio.compra.Notificacao;
 import dominio.compra.Status;
 import dominio.produto.Vinho;
 import negocio.compra.GeradorCupomDeTroca;
 import persistencia.CarrinhoDAO;
 import persistencia.CompraDAO;
+import persistencia.NotificacaoDAO;
 import persistencia.CupomDAO;
 import persistencia.ProdutoDAO;
 
@@ -90,15 +92,18 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
                     mensagem.append(" Os produtos foram repostos no estoque.");
                     request.setAttribute("mensagem",mensagem);
                 }
-                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getValorFinal());
+                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getCarrinho().getTotal());
+                Notificacao notificacao = new Notificacao(compra.getClienteId(), mensagem.toString());
+                NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+                notificacaoDAO.salvar(notificacao);
+                request.setAttribute("id", compra.getClienteId());
+                request.setAttribute("pagina", "CtrlCompraTransacoes");
+                request.setAttribute("encaminhamento", "transacoes");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
-
 }
