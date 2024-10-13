@@ -916,7 +916,7 @@ public class FluxoDeVendaTeste {
         actions.moveToElement(finalizarCompra9).perform();
         Thread.sleep(2000);
         finalizarCompra9.click();
-        Thread.sleep(4000);
+        Thread.sleep(3000);
 
     }
 
@@ -949,7 +949,5 @@ public class FluxoDeVendaTeste {
         actions.moveToElement(backgroundElement, 0, 0).click().perform(); // Clica no canto superior esquerdo do body
         Thread.sleep(1000);
     }
-
-
 }
 
