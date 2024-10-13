@@ -27,9 +27,10 @@ public class ValorMinimoCartaoComCupons implements IStrategy {
                         return "O valor mínimo para pagamento com cartão é de R$" + valorFinal + ".";
                     }
                 }
+            } else {
+                ValorMinimoCartao valMinCartao = new ValorMinimoCartao();
+                return valMinCartao.processar(entidade);
             }
-            ValorMinimoCartao valMinCartao = new ValorMinimoCartao();
-            return valMinCartao.processar(entidade);
         }
         return null;
     }

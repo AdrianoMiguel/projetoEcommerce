@@ -7,11 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import persistencia.ClienteDAO;
 import utils.Factory;
+import utils.SlowdownListener;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -29,7 +31,10 @@ public class SenhaCriptografadaTeste {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
-        driver = new ChromeDriver();
+        WebDriver baseDriver = new ChromeDriver();
+        SlowdownListener listener = new SlowdownListener(1000);
+        driver = new EventFiringDecorator(listener).decorate(baseDriver);
+        //driver = new ChromeDriver();
         driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteNovo");
     }
 

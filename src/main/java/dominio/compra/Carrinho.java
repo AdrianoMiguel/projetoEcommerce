@@ -30,6 +30,7 @@ public class Carrinho extends EntidadeDominio {
         for (Item item : itens) {
             total += (item.getQuantidade() * item.getProduto().getPreco());
         }
+        total = Math.round(total * 100.0) / 100.0;
     }
 
     public Integer getClienteId() {

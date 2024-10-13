@@ -71,7 +71,7 @@
                     <tr id="linha_${item.produto.id}">
                         <td>${item.produto.nome}</td>
                         <td>
-                            <select name="quantidade_${item.produto.id}" class="form-control"
+                            <select id="quantidade_${item.produto.id}" name="quantidade_${item.produto.id}" class="form-control"
                                     onchange="atualizarPreco(${item.produto.id}, ${item.produto.preco}, this.value)">
                                 <c:forEach var="i" begin="1" end="${item.produto.qtdeEstoque + item.quantidade}">
                                     <option value="${i}"
@@ -100,6 +100,7 @@
                     </tr>
                     <tbody id="cuponsTabela">
                 <input type="hidden" id="numCuponsHidden" name="numCuponsHidden" value="0">
+                <input type="hidden" id="cupomPromocionalUtilizado" name="cupomPromocionalUtilizado" value="false">
                     </tbody>
                     <tr>
                         <td colspan="2"><strong>Total</strong></td>

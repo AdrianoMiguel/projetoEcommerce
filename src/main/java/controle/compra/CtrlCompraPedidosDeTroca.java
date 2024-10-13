@@ -92,7 +92,7 @@ public class CtrlCompraPedidosDeTroca extends HttpServlet {
                     mensagem.append(" Os produtos foram repostos no estoque.");
                     request.setAttribute("mensagem",mensagem);
                 }
-                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ compra.getCarrinho().getTotal());
+                mensagem.append("Cupom de troca gerado com sucesso. Código TROCA"+ compra.getCarrinho().getId() + " no valor de R$"+ String.format("%.2f", compra.getCarrinho().getTotal()));
                 Notificacao notificacao = new Notificacao(compra.getClienteId(), mensagem.toString());
                 NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
                 notificacaoDAO.salvar(notificacao);

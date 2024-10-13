@@ -294,7 +294,11 @@ function atualizarTotalCarrinho() {
     totalCarrinho += valorFrete;
 
     // Atualiza o valor total do carrinho na página
+    if (totalCarrinho >= 0) {
     document.getElementById('totalCarrinho').innerHTML = `R$` + totalCarrinho.toFixed(2);
+    } else {
+        document.getElementById('totalCarrinho').innerHTML = `-R$` + (totalCarrinho * -1).toFixed(2)
+    }
     document.getElementById('totalCarrinhoHidden').value = totalCarrinho.toFixed(2);
 }
 
@@ -318,7 +322,7 @@ function gerarNavbar() {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="document.getElementById('listarVinhosForm').submit()">Vinhos</a>
+                    <a class="nav-link" id="listarVinhos" href="#" onclick="document.getElementById('listarVinhosForm').submit()">Vinhos</a>
                     <form id="listarVinhosForm" action="CtrlProdutoListar" method="GET" style="display: none;"></form>
                 </li>
 
@@ -478,6 +482,8 @@ function converterParaSegundos(hhmmss) {
     return horas * 3600 + minutos * 60 + segundos;
 }
 
+//RN0037 - Validar Forma de Pagamento para finalizacao de compra
+// (os dados dos cupons sao enviados à pagina jsp via servlet, e validados aqui)
 function aplicarCupom(numeroCupom) {
     const inputCupom = document.getElementById(`cupom_${numeroCupom}`).value.toLowerCase(); // Cupom digitado pelo usuário
     let cupomEncontrado = false;
@@ -489,6 +495,17 @@ function aplicarCupom(numeroCupom) {
         if (cupons[i].codigo.toLowerCase() === inputCupom && !cupons[i].utilizado) {
             cupomEncontrado = true;
             cupons[i].utilizado = true;
+
+            //RN0033 - Uso de cupom promocional para pagamento
+            if (!inputCupom.includes('troca') && !inputCupom.includes('credito')) {
+                if (document.getElementById('cupomPromocionalUtilizado').value === 'false') {
+                    document.getElementById('cupomPromocionalUtilizado').value = 'true';
+                } else {
+                    alert('Apenas um cupom promocional pode ser aplicado por compra.');
+                    return;
+                }
+            }
+
             novaTr.innerHTML = `
                         <td colspan="2"><strong>Cupom Aplicado</strong></td>
                         <td id="valorCupom_${numeroCupom}" name="valorCupom_${numeroCupom}"></td>
@@ -519,6 +536,7 @@ function aplicarCupom(numeroCupom) {
     }
 }
 
+//RF0034 - Calcular frete
 function calcularFrete() {
     // Seleciona o dropdown de endereços
     const selectEndereco = document.getElementById('enderecoEntrega');
