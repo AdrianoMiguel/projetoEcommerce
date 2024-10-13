@@ -12,8 +12,6 @@ import utils.Factory;
 import utils.FakerModificado;
 import utils.SlowdownListener;
 import org.openqa.selenium.interactions.Actions;
-
-
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -919,8 +917,7 @@ public class FluxoDeVendaTeste {
         Thread.sleep(3000);
 
     }
-
-
+    
     @After
     public void tearDown() {
         driver.quit();
@@ -939,15 +936,4 @@ public class FluxoDeVendaTeste {
             return null;
         }
     }
-
-    public void fecharModal() throws InterruptedException {
-        // Encontra um elemento fora do modal para clicar
-        WebElement backgroundElement = driver.findElement(By.tagName("body")); // Usa a tag body como alvo, por exemplo
-
-        // Move para o elemento e clica nele
-        Actions actions = new Actions(driver);
-        actions.moveToElement(backgroundElement, 0, 0).click().perform(); // Clica no canto superior esquerdo do body
-        Thread.sleep(1000);
-    }
 }
-
