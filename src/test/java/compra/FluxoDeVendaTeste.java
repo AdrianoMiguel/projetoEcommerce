@@ -38,6 +38,7 @@ public class FluxoDeVendaTeste {
         Actions actions = new Actions(driver);
         FakerModificado faker = new FakerModificado();
         Cliente cliente = Factory.ClienteTeste();
+        Thread.sleep(5000);
         WebElement adminDropdown = driver.findElement(By.id("adminDropdown"));
         actions.moveToElement(adminDropdown).perform();
         adminDropdown.click();
@@ -910,6 +911,10 @@ public class FluxoDeVendaTeste {
         driver.findElement(By.id("cupom_1")).sendKeys(cupomCredito);
         botaoCupom_1_2.click();
 
+        if ((Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value")) > 0)) {
+            driver.findElement(By.id("valor_cartao_0")).sendKeys(String.valueOf(Double.valueOf(driver.findElement(By.id("totalCarrinhoHidden")).getAttribute("value"))));
+        }
+
         WebElement finalizarCompra9 = driver.findElement(By.id("finalizarCompra"));
         actions.moveToElement(finalizarCompra9).perform();
         Thread.sleep(2000);
@@ -917,7 +922,7 @@ public class FluxoDeVendaTeste {
         Thread.sleep(3000);
 
     }
-    
+
     @After
     public void tearDown() {
         driver.quit();

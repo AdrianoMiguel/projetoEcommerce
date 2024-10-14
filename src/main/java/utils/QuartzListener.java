@@ -24,11 +24,9 @@ public class QuartzListener implements ServletContextListener {
             var job = JobBuilder.newJob(Job_VerificadorCarrinhosExpirados.class)
                     .withIdentity("Job_VerificadorCarrinhosExpirados", "grupo1")
                     .build();
-
             var job2 = JobBuilder.newJob(Job_ValidadorOperadoraCredito.class)
                     .withIdentity("Job_ValidadorOperadoraCredito", "grupo2")
                     .build();
-
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("meuTrigger", "grupo1")
                     .startNow()
@@ -36,12 +34,11 @@ public class QuartzListener implements ServletContextListener {
                             .withIntervalInSeconds(1)
                             .repeatForever())
                     .build();
-
             Trigger trigger2 = TriggerBuilder.newTrigger()
                     .withIdentity("meuTrigger2", "grupo2")
                     .startNow()
                     .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                            .withIntervalInSeconds(2)
+                            .withIntervalInSeconds(15)
                             .repeatForever())
                     .build();
 
@@ -49,7 +46,6 @@ public class QuartzListener implements ServletContextListener {
             scheduler.scheduleJob(job2, trigger2);
 
             scheduler.start();
-
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
