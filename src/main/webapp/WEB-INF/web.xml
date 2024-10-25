@@ -144,6 +144,12 @@
 		<servlet-class>controle.compra.CtrlCompraTransacoes</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>CtrlAnaliseVendas</servlet-name>
+		<display-name>CtrlAnaliseVendas</display-name>
+		<description/>
+		<servlet-class>controle.compra.CtrlAnaliseVendas</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>CtrlCompraAdicionarCarrinho</servlet-name>
 		<display-name>CtrlCompraAdicionarCarrinho</display-name>
 		<description/>
@@ -239,6 +245,10 @@
 	<servlet-mapping>
 		<servlet-name>CtrlCompraVisualizar</servlet-name>
 		<url-pattern>/CtrlCompraVisualizar</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CtrlAnaliseVendas</servlet-name>
+		<url-pattern>/CtrlAnaliseVendas</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CtrlProdutoDetalhes</servlet-name>

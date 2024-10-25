@@ -350,6 +350,7 @@ function gerarNavbar() {
                 <a id="consultarVinho" class="dropdown-item" href="ConsultaProduto">Consultar Vinho</a>
                 <div class="dropdown-divider"></div>
                 <a id="pedidosDeTroca" class="dropdown-item" href="CtrlCompraPedidosDeTroca">Pedidos De Troca</a>
+                <a id="analiseVendas" class="dropdown-item" href="CtrlAnaliseVendas">Analise de Vendas</a>
             </div>
         </li>
         </ul>
