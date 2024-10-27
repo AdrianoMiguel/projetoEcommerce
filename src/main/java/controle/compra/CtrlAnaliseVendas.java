@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import dominio.compra.Item;
 import dominio.compra.Status;
 import dominio.estoque.Fornecedor;
 import dominio.produto.*;
@@ -38,6 +42,22 @@ public class CtrlAnaliseVendas extends HttpServlet {
                         dispatcher.forward(request, response);
 
                     }
+            // Estrutura para armazenar a quantidade de vinhos vendidos por data
+            Map<String, Map<Vinho, Integer>> vinhosPorData = new HashMap<>();
+
+            // Agrupando vinhos vendidos por data
+            for (Compra compra : compras) {
+                String dataCompra = new SimpleDateFormat("yyyy-MM-dd").format(compra.getDataHora());
+
+                for (Item item : compra.getCarrinho().getItens()) {
+                    Vinho vinho = item.getProduto();
+                    vinhosPorData.putIfAbsent(dataCompra, new HashMap<>());
+                    vinhosPorData.get(dataCompra).put(vinho, vinhosPorData.get(dataCompra).getOrDefault(vinho, 0) + item.getQuantidade());
+                }
+            }
+
+
+
 
                     TpVinho[] tiposVinho = TpVinho.values();
                     TpUva[] tiposUva = TpUva.values();
@@ -48,7 +68,7 @@ public class CtrlAnaliseVendas extends HttpServlet {
                     request.setAttribute("paises", paises);
 
                     request.setAttribute("vinhos", vinhos);
-                    request.setAttribute("compras", compras);
+                    request.setAttribute("vinhosPorData", vinhosPorData);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/Compra/analiseVendas.jsp");
                     dispatcher.forward(request, response);
 

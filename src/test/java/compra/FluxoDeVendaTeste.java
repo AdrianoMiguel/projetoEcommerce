@@ -24,10 +24,10 @@ public class FluxoDeVendaTeste {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
-        WebDriver baseDriver = new ChromeDriver();
-        SlowdownListener listener = new SlowdownListener(1000);
-        driver = new EventFiringDecorator(listener).decorate(baseDriver);
-        //driver = new ChromeDriver();
+        //WebDriver baseDriver = new ChromeDriver();
+        //SlowdownListener listener = new SlowdownListener(1000);
+        //driver = new EventFiringDecorator(listener).decorate(baseDriver);
+        driver = new ChromeDriver();
         driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlProdutoListar");
     }
 

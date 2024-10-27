@@ -1,6 +1,8 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="com.google.gson.Gson"%>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
     const idCliente = '${sessionScope.idCliente != null ? sessionScope.idCliente : "null"}';
@@ -89,6 +91,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         gerarNavbar();
+
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -101,127 +104,27 @@
 
 
     // Dados de compras vindos do servidor
-    const compras = [
-        <c:forEach var="compra" items="${compras}">
+    const vinhosPorData = [
+        <c:forEach var="dataCompraEntry" items="${vinhosPorData}">
         {
-            id: ${compra.id},
-            clienteId: ${compra.clienteId},
-            dataHora: '${compra.dataHora}',
-            valorFinal: ${compra.valorFinal},
+            dataCompra: new Date('${dataCompraEntry.key}'),
             itens: [
-                <c:forEach var="item" items="${compra.carrinho.itens}">
+                <c:forEach var="vinhoEntry" items="${dataCompraEntry.value}">
                 {
-                    quantidade: ${item.quantidade},
-                    produto: {
-                        nome: '${item.produto.nome}',
-                        safra: ${item.produto.safra},
-                        preco: ${item.produto.preco},
-                        tipoVinho: '${item.produto.tipoVinho}',
-                        tipoUva: [
-                            <c:forEach var="uva" items="${item.produto.tipoUva}">
-                            '${uva}'<c:if test="${!status.last}">, </c:if>
-                            </c:forEach>
-                        ],
-                        pais: '${item.produto.pais}',
-                        volume: ${item.produto.volume}
+                    quantidade: ${vinhoEntry.value},
+                    vinho: {
+                        nome: '${vinhoEntry.key.nome}',
+                        preco: ${vinhoEntry.key.preco},
+                        tipoVinho: '${vinhoEntry.key.tipoVinho}',
+                        tipoUva: '${vinhoEntry.key.tipoUva}',
+                        pais: '${vinhoEntry.key.pais}'
                     }
-                }<c:if test="${!status.last}">, </c:if>
+                },
                 </c:forEach>
             ]
-        }<c:if test="${!status.last}">, </c:if>
+        },
         </c:forEach>
     ];
-
-    // Função para renderizar o gráfico
-    function renderizarGrafico(filtrados) {
-        const ctx = document.getElementById('compraChart').getContext('2d');
-        const datasets = [];
-
-        // Organizando os dados por produto
-        const dadosPorProduto = {};
-
-        filtrados.forEach(compra => {
-            compra.itens.forEach(item => {
-                const produtoNome = item.produto.nome;
-                if (!dadosPorProduto[produtoNome]) {
-                    dadosPorProduto[produtoNome] = [];
-                }
-                dadosPorProduto[produtoNome].push({
-                    x: new Date(compra.dataHora),
-                    y: item.quantidade
-                });
-            });
-        });
-
-        // Criar datasets para cada produto
-        for (const produto in dadosPorProduto) {
-            datasets.push({
-                label: produto,
-                data: dadosPorProduto[produto],
-                fill: false,
-                borderColor: getRandomColor(),
-                tension: 0.1
-            });
-        }
-
-        // Se já houver um gráfico, destrua-o para evitar duplicação
-        if (chart) {
-            chart.destroy();
-        }
-
-        chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: datasets
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'day'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-
-    // Função para gerar uma cor aleatória
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-    // Função para filtrar dados com base no intervalo de datas e categorias
-    function filtrarDados() {
-        const dataInicio = new Date(document.getElementById('dataInicio').value);
-        const dataFim = new Date(document.getElementById('dataFim').value);
-        const produtoSelecionado = document.getElementById('produto').value;
-        const tipoVinhoSelecionado = document.getElementById('tipoVinho').value;
-        const tipoUvaSelecionado = document.getElementById('tipoUva').value;
-        const paisSelecionado = document.getElementById('pais').value;
-
-        const filtrados = compras.filter(compra => {
-            const dataCompra = new Date(compra.dataHora);
-
-            return (!isNaN(dataInicio) ? dataCompra >= dataInicio : true) &&
-                (!isNaN(dataFim) ? dataCompra <= dataFim : true) &&
-                (produtoSelecionado ? compra.itens.some(item => item.produto.nome === produtoSelecionado) : true) &&
-                (tipoVinhoSelecionado ? compra.itens.some(item => item.produto.tipoVinho === tipoVinhoSelecionado) : true) &&
-                (tipoUvaSelecionado ? compra.itens.some(item => item.produto.tipoUva.includes(tipoUvaSelecionado)) : true) &&
-                (paisSelecionado ? compra.itens.some(item => item.produto.pais === paisSelecionado) : true);
-        });
-
-        renderizarGrafico(filtrados);
-    }
 
     // Renderiza o gráfico inicial com todos os dados
     // renderizarGrafico(compras);

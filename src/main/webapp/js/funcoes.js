@@ -644,3 +644,127 @@ function abrirModal() {
         modal.show();
     }
 }
+function filtrarDados() {
+    const dataInicio = new Date(document.getElementById('dataInicio').value);
+    const dataFim = new Date(document.getElementById('dataFim').value);
+    const produtoSelecionado = document.getElementById('produto').value;
+    const tipoVinhoSelecionado = document.getElementById('tipoVinho').value;
+    const tipoUvaSelecionado = document.getElementById('tipoUva').value;
+    const paisSelecionado = document.getElementById('pais').value;
+
+    // Filtrar os dados de vinhos agrupados por data
+    const filtrados = vinhosPorData.flatMap(grupo => {
+        const dataCompra = grupo.dataCompra;
+
+        // Verifica se a data está dentro do intervalo especificado
+        const dentroDoPeriodo = (!isNaN(dataInicio) ? dataCompra >= dataInicio : true) &&
+            (!isNaN(dataFim) ? dataCompra <= dataFim : true);
+
+        if (!dentroDoPeriodo) return []; // Se estiver fora do período, ignore este grupo
+
+        // Filtra vinhos dentro do grupo de data atual
+        return grupo.itens.filter(item => {
+            // Filtros específicos para cada propriedade do vinho
+            const correspondeAoProduto = produtoSelecionado
+                ? item.vinho.nome === produtoSelecionado
+                : true;
+
+            const correspondeAoTipoVinho = tipoVinhoSelecionado
+                ? item.vinho.tipoVinho === tipoVinhoSelecionado
+                : true;
+
+            const correspondeAoTipoUva = tipoUvaSelecionado
+                ? item.vinho.tipoUva.includes(tipoUvaSelecionado)
+                : true;
+
+            const correspondeAoPais = paisSelecionado
+                ? item.vinho.pais === paisSelecionado
+                : true;
+
+            return correspondeAoProduto && correspondeAoTipoVinho && correspondeAoTipoUva && correspondeAoPais;
+        }).map(item => ({ ...item, dataCompra })); // Adicionar dataCompra ao item filtrado
+    });
+
+    // Chamar a função de renderização com os itens filtrados
+    renderizarGrafico(filtrados);
+}
+function renderizarGrafico(itensFiltrados) {
+
+    itensFiltrados.sort((a, b) => a.dataCompra - b.dataCompra);
+
+    const ctx = document.getElementById('compraChart').getContext('2d');
+    const datasets = [];
+
+    // Organizando e somando as quantidades por data e produto
+    const dadosPorProduto = {};
+
+    itensFiltrados.forEach(item => {
+        const produtoNome = item.vinho.nome;
+        const dataCompra = item.dataCompra;
+        const dataChave = dataCompra.toISOString().split('T')[0]; // Extrai a data no formato "YYYY-MM-DD"
+
+        // Inicializar a estrutura se ainda não existir
+        if (!dadosPorProduto[produtoNome]) {
+            dadosPorProduto[produtoNome] = {};
+        }
+        // Acumular a quantidade por data
+        if (!dadosPorProduto[produtoNome][dataChave]) {
+            dadosPorProduto[produtoNome][dataChave] = 0;
+        }
+        dadosPorProduto[produtoNome][dataChave] += item.quantidade;
+    });
+
+    // Criar datasets para cada produto, com as quantidades agrupadas por dia
+    for (const produto in dadosPorProduto) {
+        const dataPoints = [];
+        for (const data in dadosPorProduto[produto]) {
+            dataPoints.push({
+                x: new Date(data),
+                y: dadosPorProduto[produto][data]
+            });
+        }
+        datasets.push({
+            label: produto,
+            data: dataPoints,
+            fill: false,
+            borderColor: getRandomColor(),
+            tension: 0.1
+        });
+    }
+
+    // Se já houver um gráfico, destrua-o para evitar duplicação
+    if (window.chart) {
+        window.chart.destroy();
+    }
+
+    window.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}

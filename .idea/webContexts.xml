@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/alterarCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/alterarSenhaCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Cliente/consultarCliente.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Cliente" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Compra/analiseVendas.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Compra" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Compra/iniciarTroca.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Compra" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Compra/meuCarrinho.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Compra" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Produto/cadastrarVinho.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Produto" />
