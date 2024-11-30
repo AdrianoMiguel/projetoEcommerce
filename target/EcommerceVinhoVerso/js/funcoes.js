@@ -68,7 +68,6 @@ function criarCheckboxesUvas(valoresEnum) {
     });
 }
 
-
 function obterTiposUvaSelecionadas() {
     const tiposUvasSelecionadas = [];
     const checkboxesUvas = document.querySelectorAll('input[name="tipoUva"]:checked');
@@ -77,7 +76,6 @@ function obterTiposUvaSelecionadas() {
     });
     document.getElementById('tiposUvaSelecionadas').value = tiposUvasSelecionadas.join(", ").toUpperCase();
 }
-
 
 let contador;
 
@@ -591,6 +589,7 @@ function submitForm(encaminhamentoValue) {
 function naoRepor(compraIdContainer) {
     document.getElementById('reporEstoque_' + compraIdContainer).value = 'false';
 }
+
 function Repor(compraIdContainer) {
     document.getElementById('reporEstoque_' + compraIdContainer).value = 'true';
 }
@@ -644,17 +643,22 @@ function abrirModal() {
         modal.show();
     }
 }
+
 function filtrarDados() {
     const dataInicio = new Date(document.getElementById('dataInicio').value);
+    dataInicio.setHours(dataInicio.getHours() + 4);
     const dataFim = new Date(document.getElementById('dataFim').value);
+    dataFim.setHours(dataFim.getHours() + 22);
     const produtoSelecionado = document.getElementById('produto').value;
     const tipoVinhoSelecionado = document.getElementById('tipoVinho').value;
     const tipoUvaSelecionado = document.getElementById('tipoUva').value;
     const paisSelecionado = document.getElementById('pais').value;
 
+
     // Filtrar os dados de vinhos agrupados por data
     const filtrados = vinhosPorData.flatMap(grupo => {
-        const dataCompra = grupo.dataCompra;
+        const dataCompra = new Date(grupo.dataCompra);
+        dataCompra.setHours(dataCompra.getHours() + 4);
 
         // Verifica se a data está dentro do intervalo especificado
         const dentroDoPeriodo = (!isNaN(dataInicio) ? dataCompra >= dataInicio : true) &&
@@ -665,32 +669,30 @@ function filtrarDados() {
         // Filtra vinhos dentro do grupo de data atual
         return grupo.itens.filter(item => {
             // Filtros específicos para cada propriedade do vinho
-            const correspondeAoProduto = produtoSelecionado && produtoSelecionado !== 'todos'
+            const correspondeAoProduto = produtoSelecionado
                 ? item.vinho.nome === produtoSelecionado
                 : true;
 
-            const correspondeAoTipoVinho = tipoVinhoSelecionado && tipoVinhoSelecionado !== 'todos'
+            const correspondeAoTipoVinho = tipoVinhoSelecionado
                 ? item.vinho.tipoVinho === tipoVinhoSelecionado
                 : true;
 
-            const correspondeAoTipoUva = tipoUvaSelecionado && tipoUvaSelecionado !== 'todos'
+            const correspondeAoTipoUva = tipoUvaSelecionado
                 ? item.vinho.tipoUva.includes(tipoUvaSelecionado)
                 : true;
 
-            const correspondeAoPais = paisSelecionado && paisSelecionado !== 'todos'
+            const correspondeAoPais = paisSelecionado
                 ? item.vinho.pais === paisSelecionado
                 : true;
 
             return correspondeAoProduto && correspondeAoTipoVinho && correspondeAoTipoUva && correspondeAoPais;
         }).map(item => ({ ...item, dataCompra })); // Adicionar dataCompra ao item filtrado
     });
-
-    // Chamar a função de renderização com os itens filtrados
-    renderizarGrafico(filtrados);
+    filtrados.sort((a, b) => a.dataCompra - b.dataCompra);
+    return filtrados;
 }
-function renderizarGrafico(itensFiltrados) {
 
-    itensFiltrados.sort((a, b) => a.dataCompra - b.dataCompra);
+function renderizarGrafico(itensFiltrados) {
 
     const ctx = document.getElementById('compraChart').getContext('2d');
     const datasets = [];
@@ -700,7 +702,11 @@ function renderizarGrafico(itensFiltrados) {
 
     itensFiltrados.forEach(item => {
         const produtoNome = item.vinho.nome;
-        const dataCompra = item.dataCompra;
+
+        // Adiciona 4 horas à dataCompra
+        const dataCompra = new Date(item.dataCompra);
+        dataCompra.setHours(dataCompra.getHours() + 4); // Ajusta o horário
+
         const dataChave = dataCompra.toISOString().split('T')[0]; // Extrai a data no formato "YYYY-MM-DD"
 
         // Inicializar a estrutura se ainda não existir
@@ -718,8 +724,12 @@ function renderizarGrafico(itensFiltrados) {
     for (const produto in dadosPorProduto) {
         const dataPoints = [];
         for (const data in dadosPorProduto[produto]) {
+            // Criar a data ajustada
+            const dataAjustada = new Date(data);
+            dataAjustada.setHours(dataAjustada.getHours() + 4); // Ajusta o horário
+
             dataPoints.push({
-                x: new Date(data),
+                x: dataAjustada,
                 y: dadosPorProduto[produto][data]
             });
         }
@@ -733,11 +743,13 @@ function renderizarGrafico(itensFiltrados) {
     }
 
     // Se já houver um gráfico, destrua-o para evitar duplicação
-    if (window.chart) {
-        window.chart.destroy();
+    if (window.charts && window.charts['compraChart']) {
+        window.charts['compraChart'].destroy();
+    } else {
+        window.charts = window.charts || {};
     }
 
-    window.chart = new Chart(ctx, {
+    window.charts['compraChart'] = new Chart(ctx, {
         type: 'line',
         data: {
             datasets: datasets
@@ -748,17 +760,273 @@ function renderizarGrafico(itensFiltrados) {
                     type: 'time',
                     time: {
                         unit: 'day'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data'
                     }
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade'
+                    }
                 }
             }
         }
     });
 }
 
+function renderizarGraficoPorCategoria(dadosPorPropriedade, propriedade) {
+    dadosPorPropriedade.sort((a, b) => a.dataCompra - b.dataCompra);
 
+    const ctx = document.getElementById('compraChart2').getContext('2d');
+    const datasets = [];
+
+
+    // Organizando e somando as quantidades e valores por data e tipo de uva
+    dadosPorPropriedade.forEach(entry => {
+        const dataChave = entry.dataCompra.toISOString().split('T')[0]; // Extrai a data no formato "YYYY-MM-DD"
+        const propriedadeNome = entry[propriedade];
+
+        // Inicializar a estrutura de dados se ainda não existir
+        if (!datasets.some(dataset => dataset.label === propriedadeNome)) {
+
+            datasets.push({
+                label: propriedadeNome,
+                data: [],
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+            });
+        }
+
+        // Encontra o dataset correto e adiciona o ponto de dados
+        const dataset = datasets.find(d => d.label === propriedadeNome);
+        dataset.data.push({
+            x: new Date(new Date(dataChave).setHours(new Date(dataChave).getHours() + 4)),
+            y: entry.quantidade
+        });
+    });
+
+    // Se já houver um gráfico, destrua-o para evitar duplicação
+    if (window.charts && window.charts['compraChart2']) {
+        window.charts['compraChart2'].destroy();
+    } else {
+        window.charts = window.charts || {};
+    }
+
+    window.charts['compraChart2'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderizarGraficoValor(itensFiltrados) {
+
+    const ctx = document.getElementById('compraChart').getContext('2d');
+    const datasets = [];
+
+    // Organizando e somando os valores (quantidade * preço) por data e produto
+    const dadosPorProduto = {};
+
+    itensFiltrados.forEach(item => {
+        const produtoNome = item.vinho.nome;
+        const dataCompra = item.dataCompra;
+        const dataChave = dataCompra.toISOString().split('T')[0]; // Extrai a data no formato "YYYY-MM-DD"
+
+        // Inicializar a estrutura se ainda não existir
+        if (!dadosPorProduto[produtoNome]) {
+            dadosPorProduto[produtoNome] = {};
+        }
+        // Acumular o valor (quantidade * preço) por data
+        if (!dadosPorProduto[produtoNome][dataChave]) {
+            dadosPorProduto[produtoNome][dataChave] = 0;
+        }
+        dadosPorProduto[produtoNome][dataChave] += item.quantidade * item.vinho.preco;
+    });
+
+    // Criar datasets para cada produto, com os valores agrupados por dia
+    for (const produto in dadosPorProduto) {
+        const dataPoints = [];
+        for (const data in dadosPorProduto[produto]) {
+            // Criar a data ajustada
+            const dataAjustada = new Date(data);
+            dataAjustada.setHours(dataAjustada.getHours() + 4); // Ajusta o horário
+
+            dataPoints.push({
+                x: dataAjustada,
+                y: dadosPorProduto[produto][data]
+            });
+        }
+        datasets.push({
+            label: produto,
+            data: dataPoints,
+            fill: false,
+            borderColor: getRandomColor(),
+            tension: 0.1
+        });
+    }
+
+    // Se já houver um gráfico, destrua-o para evitar duplicação
+    if (window.charts && window.charts['compraChart']) {
+        window.charts['compraChart'].destroy();
+    } else {
+        window.charts = window.charts || {};
+    }
+
+    window.charts['compraChart'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Valor Total (R$)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderizarGraficoPorValorPorCategoria(dadosPorPropriedade, propriedade) {
+    dadosPorPropriedade.sort((a, b) => a.dataCompra - b.dataCompra);
+
+    const ctx = document.getElementById('compraChart2').getContext('2d');
+    const datasets = [];
+
+    // Organizando e somando as quantidades e valores por data e tipo de uva
+    dadosPorPropriedade.forEach(entry => {
+        const dataChave = entry.dataCompra.toISOString().split('T')[0]; // Extrai a data no formato "YYYY-MM-DD"
+        const propriedadeNome = entry[propriedade];
+
+        // Inicializar a estrutura de dados se ainda não existir
+        if (!datasets.some(dataset => dataset.label === propriedadeNome)) {
+            datasets.push({
+                label: propriedadeNome,
+                data: [],
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+            });
+        }
+
+        // Encontra o dataset correto e adiciona o ponto de dados
+        const dataset = datasets.find(d => d.label === propriedadeNome);
+        dataset.data.push({
+            x: new Date(dataChave),
+            y: entry.valorTotal
+        });
+    });
+
+    // Se já houver um gráfico, destrua-o para evitar duplicação
+    if (window.charts && window.charts['compraChart2']) {
+        window.charts['compraChart2'].destroy();
+    } else {
+        window.charts = window.charts || {};
+    }
+
+    window.charts['compraChart2'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Valor Total (R$)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function agruparESomarPorPropriedade(vinhosPorData, propriedade) {
+    const agrupamento = {};
+
+    vinhosPorData.forEach(entry => {
+        const data = entry.dataCompra.toISOString().split('T')[0]; // Formatar data como 'AAAA-MM-DD'
+
+        // Inicializar a data no agrupamento se não existir
+        if (!agrupamento[data]) agrupamento[data] = {};
+
+        entry.itens.forEach(item => {
+            const chavePropriedade = item.vinho[propriedade];
+
+            // Se a propriedade ainda não existir para a data, inicialize com quantidade e valor 0
+            if (!agrupamento[data][chavePropriedade]) {
+                agrupamento[data][chavePropriedade] = { quantidade: 0, valorTotal: 0 };
+            }
+
+            // Somar quantidade e valor total para o tipo de propriedade específico
+            agrupamento[data][chavePropriedade].quantidade += item.quantidade;
+            agrupamento[data][chavePropriedade].valorTotal += item.quantidade * item.vinho.preco;
+        });
+    });
+
+    // Converter o agrupamento para o formato desejado
+    return Object.keys(agrupamento).map(data => ({
+        dataCompra: new Date(new Date(data).setHours(new Date(data).getHours() + 4)),
+        itens: Object.keys(agrupamento[data]).map(chave => ({
+            quantidade: agrupamento[data][chave].quantidade,
+            valorTotal: agrupamento[data][chave].valorTotal,
+            [propriedade]: chave
+        }))
+    }));
+}
 
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
@@ -767,4 +1035,74 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function filtrarDadosPorData(grupoPorData) {
+    const dataInicio = new Date(document.getElementById('dataInicioCategoria').value);
+    dataInicio.setHours(dataInicio.getHours() + 4);
+    const dataFim = new Date(document.getElementById('dataFimCategoria').value);
+    dataFim.setHours(dataFim.getHours() + 22);
+
+    // Função para filtrar grupos por data
+    const filtrados = grupoPorData.flatMap(grupo => {
+        const dataCompra = grupo.dataCompra;
+
+        // Verifica se a data está dentro do intervalo especificado
+        const dentroDoPeriodo = (!isNaN(dataInicio) ? dataCompra >= dataInicio : true) &&
+            (!isNaN(dataFim) ? dataCompra <= dataFim : true);
+
+        if (!dentroDoPeriodo) return []; // Se estiver fora do período, ignore este grupo
+
+        return grupo.itens.map(item => ({...item, dataCompra})); // Adicionar dataCompra ao item filtrado
+    });
+
+    // Ordenar os dados filtrados por data de compra
+    filtrados.sort((a, b) => a.dataCompra - b.dataCompra);
+
+    return filtrados;
+}
+
+function toggleChat() {
+    const chatWindow = document.getElementById('chatbotWindow');
+    if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+        chatWindow.style.display = 'flex';
+    } else {
+        chatWindow.style.display = 'none';
+    }
+}
+
+function enviarMensagem() {
+    const userMessage = document.getElementById('userMessage').value;
+    if (userMessage.trim() !== '') {
+        const chatContent = document.getElementById('chatbotContent');
+
+        const userMessageElement = document.createElement('div');
+        userMessageElement.innerHTML = "<b>Voce:</b> " + userMessage;
+        chatContent.appendChild(userMessageElement);
+
+        document.getElementById('userMessage').value = '';
+
+        fetch('/EcommerceVinhoVerso_war/ChatbotServlet', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'mensagem=' + encodeURIComponent(userMessage)
+        })
+            .then(response => response.json())
+            .then(data => {
+                let resposta = data.resposta;
+
+                const botMessageElement = document.createElement('div');
+                botMessageElement.innerHTML = "<b>Chatbot:</b> " + resposta;
+                chatContent.appendChild(botMessageElement);
+
+                chatContent.scrollTop = chatContent.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                const errorMessageElement = document.createElement('div');
+                errorMessageElement.innerHTML = "<b>Chatbot:</b> Ocorreu um erro ao processar sua solicitacao.";
+                chatContent.appendChild(errorMessageElement);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            });
+    }
 }

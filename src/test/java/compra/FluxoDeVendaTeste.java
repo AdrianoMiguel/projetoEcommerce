@@ -18,16 +18,48 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FluxoDeVendaTeste {
+    //ANOTACOES REFERENTE AO TESTE
+    //ATENDE AS SEGUINTES REGRAS E REQUISITOS:
+    //RF0025 - Consulta de Transacoes
+    //RF0031 - Gerenciar Carrinho de Compras
+    //RF0032 - Definir quantidade de itens no carrinho
+    //RF0033 - Realizar compra
+    //RF0034 - Calcular Frete
+    //RF0035 - Selecionar endereço de entrega
+    //RF0036 - Selecionar forma de pagamento
+    //RF0037 - Finalizar compra
+    //RF0038 - Despachar produtos para entrega
+    //RF0039 - Produtos entregues
+    //RF0040 - Solicitar troca
+    //RF0041 - Autorizar trocas
+    //RF0042 - Visualização de trocas
+    //RF0043 - Confirmar recebimento de itens para troca
+    //RF0044 - Gerar cupom de troca após recebimento de itens
+
+    //RN0031 - Validar estoque para adição de itens no carrinho
+    //RN0034 - Uso de diversos cartoes de credito
+    //RN0035 - Uso de cupons junto a cartao de credito
+    //RN0036 - Gerar cupom de troca
+    //RN0037 - Validar forma de pagamento para finalizacao da compra
+    //RN0038 - Alterar status da compra conforme processo de aprovacao de forma de pagamento
+    //RN0039 - Alterar status da compra para transporte
+    //RN0040 - Alterar status da compra apos entrega
+    //RN0041 - Gerar pedido de troca
+    //RN0042 - Alterar status do pedido apos recebimento de troca
+    //RN0043 - Validação para solicitar troca
+    //RN0044 - Bloqueio de produtos
+    //RN0045 - Retirar item do carrinho
+    //RN0046 - Gerar notificacao de autorizacao de troca
 
     private WebDriver driver;
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
-        //WebDriver baseDriver = new ChromeDriver();
-        //SlowdownListener listener = new SlowdownListener(1000);
-        //driver = new EventFiringDecorator(listener).decorate(baseDriver);
-        driver = new ChromeDriver();
+        WebDriver baseDriver = new ChromeDriver();
+        SlowdownListener listener = new SlowdownListener(1000);
+        driver = new EventFiringDecorator(listener).decorate(baseDriver);
+        //driver = new ChromeDriver();
         driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlProdutoListar");
     }
 
@@ -375,6 +407,7 @@ public class FluxoDeVendaTeste {
         Thread.sleep(3000);
         botaoVoltar9.click();
 
+        //RF0025 - Consulta de Transacoes
         //RF0038 - Despachar produtos para entrega
         WebElement transacoesBtn = driver.findElement(By.id("transacoesBtn"));
         Thread.sleep(2000);

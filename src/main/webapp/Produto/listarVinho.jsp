@@ -107,6 +107,20 @@
         </div>
     </div>
 </div>
+<div class="chatbot-icon" onclick="toggleChat()"> <i class="fa-regular fa-comment-dots"></i>
+</div>
+
+<div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">Chatbot</div>
+    <div class="chatbot-content" id="chatbotContent">
+
+    </div>
+    <div class="chatbot-input-container">
+        <input type="text" class="chatbot-input" id="userMessage" placeholder="Digite sua mensagem...">
+        <button class="chatbot-send-button" onclick="enviarMensagem()">Enviar</button>
+    </div>
+</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         gerarNavbar();

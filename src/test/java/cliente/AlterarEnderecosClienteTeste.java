@@ -21,6 +21,7 @@ public class AlterarEnderecosClienteTeste {
     //ANOTACOES REFERENTE AO TESTE
     //ATENDE AS SEGUINTES REGRAS E REQUISITOS:
     //RF0022 - ALTERAR CLIENTE
+    //RF0034 - ALTERACAO APENAS DE ENDERECOS
     private Cliente cliente;
     private Cliente clienteAntesDeAlterar;
     private Cliente clienteAlterado;

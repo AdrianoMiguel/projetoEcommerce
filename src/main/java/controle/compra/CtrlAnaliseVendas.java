@@ -44,20 +44,26 @@ public class CtrlAnaliseVendas extends HttpServlet {
                     }
             // Estrutura para armazenar a quantidade de vinhos vendidos por data
             Map<String, Map<Vinho, Integer>> vinhosPorData = new HashMap<>();
+            Map<String, Map<Vinho, Integer>> vinhosPorMes = new HashMap<>();
 
             // Agrupando vinhos vendidos por data
             for (Compra compra : compras) {
-                String dataCompra = new SimpleDateFormat("yyyy-MM-dd").format(compra.getDataHora());
+                if (compra.getStatus() != Status.EM_PROCESSAMENTO || compra.getStatus() != Status.EM_TROCA
+                        || compra.getStatus() != Status.TROCADO || compra.getStatus() != Status.PAGAMENTO_REJEITADO) {
+                    String dataCompra = new SimpleDateFormat("yyyy-MM-dd").format(compra.getDataHora());
+                    String mesCompra = new SimpleDateFormat("yyyy-MM").format(compra.getDataHora());
 
-                for (Item item : compra.getCarrinho().getItens()) {
-                    Vinho vinho = item.getProduto();
-                    vinhosPorData.putIfAbsent(dataCompra, new HashMap<>());
-                    vinhosPorData.get(dataCompra).put(vinho, vinhosPorData.get(dataCompra).getOrDefault(vinho, 0) + item.getQuantidade());
+
+                    for (Item item : compra.getCarrinho().getItens()) {
+                        Vinho vinho = item.getProduto();
+                        vinhosPorData.putIfAbsent(dataCompra, new HashMap<>());
+                        vinhosPorMes.putIfAbsent(mesCompra, new HashMap<>());
+
+                        vinhosPorData.get(dataCompra).put(vinho, vinhosPorData.get(dataCompra).getOrDefault(vinho, 0) + item.getQuantidade());
+                        vinhosPorMes.get(mesCompra).put(vinho, vinhosPorMes.get(mesCompra).getOrDefault(vinho, 0) + item.getQuantidade());
+                    }
                 }
             }
-
-
-
 
                     TpVinho[] tiposVinho = TpVinho.values();
                     TpUva[] tiposUva = TpUva.values();
@@ -69,6 +75,7 @@ public class CtrlAnaliseVendas extends HttpServlet {
 
                     request.setAttribute("vinhos", vinhos);
                     request.setAttribute("vinhosPorData", vinhosPorData);
+                    request.setAttribute("vinhosPorMes", vinhosPorMes);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/Compra/analiseVendas.jsp");
                     dispatcher.forward(request, response);
 

@@ -118,7 +118,7 @@ public class SenhaCriptografadaTeste {
         // Preencher dados do cartão
         driver.findElement(By.id("cartaoNome1")).sendKeys(cliente.getCartoes().get(0).getNome());
         Select bandeira1 = new Select(driver.findElement(By.id("bandeira1")));
-        bandeira1.selectByVisibleText(cliente.getCartoes().get(0).getBandeira().toString());
+        bandeira1.selectByVisibleText(cliente.getCartoes().get(0).getBandeira().toString().replace("_", " "));
         driver.findElement(By.id("cartaoNum1")).sendKeys(cliente.getCartoes().get(0).getNumero());
         driver.findElement(By.id("cartaoCodSeg1")).sendKeys(cliente.getCartoes().get(0).getCod().toString());
 
@@ -126,7 +126,7 @@ public class SenhaCriptografadaTeste {
         driver.findElement(By.id("addCartao")).click();
         driver.findElement(By.id("cartaoNome2")).sendKeys(cliente.getCartoes().get(1).getNome());
         Select bandeira2 = new Select(driver.findElement(By.id("bandeira2")));
-        bandeira2.selectByVisibleText(cliente.getCartoes().get(1).getBandeira().toString());
+        bandeira2.selectByVisibleText(cliente.getCartoes().get(1).getBandeira().toString().replace("_", " "));
         driver.findElement(By.id("cartaoNum2")).sendKeys(cliente.getCartoes().get(1).getNumero());
         driver.findElement(By.id("cartaoCodSeg2")).sendKeys(cliente.getCartoes().get(1).getCod().toString());
 
