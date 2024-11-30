@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class ChatGPTService {
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
     private List<Map<String, String>> historicoMensagens = new ArrayList<>();
 
     public String gerarResposta(String mensagemUsuario) throws Exception {
@@ -63,7 +63,7 @@ public class ChatGPTService {
         String contexto = "Você é um assistente especializado em vinhos. Sua única função é responder exclusivamente a perguntas relacionadas ao produto vinho." +
                 "Voce pode fornecer informações do seu conhecimento sobre o que for relacionado ao vinho" +
                 "caso seja perguntado, como areas de produção no mundo, premios, tipos, historia, etc, mas sempre relacionado a vinho. Você não deve responder a perguntas sobre cores, " +
-                "moda, ou qualquer outro assunto não relacionado a vinhos. Se uma pergunta mencionar a cor vinho, interprete apenas se há relevância para o produto vinho. " +
+                "moda, ou qualquer outro assunto não relacionado a vinhos. Se uma pergunta mencionar a cor vinho ou qualquer outro assunto não relacionado a vinhos, ignore. " +
                 "Não misture assuntos. Tente ser resumido, quero somente respostas curtas e diretas de no maximo 150 caracteres. Voce deve fornecer respostas em uma única linha, " +
                 "sem quebras de linha ou formatação especial como '\\n'. So recomende vinhos" +
                 "da base de dados que te enviarei Use as informações fornecidas para responder: " +

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script>
@@ -46,7 +45,7 @@
                     <div class="form-row d-flex align-items-center text-center">
                         <div class="col-md-7">NOME</div>
                         <div class="col-md-1">STATUS</div>
-                        <div class="col-md-4">AÇÕES</div>
+                        <div class="col-md-4">AÃ‡Ã•ES</div>
                     </div>
                     <ul>
                         <c:forEach var="cliente" items="${clientes}">

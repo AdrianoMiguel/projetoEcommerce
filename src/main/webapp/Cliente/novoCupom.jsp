@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script>
@@ -31,7 +30,7 @@
                 <input type="hidden" name="id" value="${clienteId}">
                 <div class="form-row justify-content-between">
                     <div class="form-group col-md-5">
-                        <h5>Código:</h5>
+                        <h5>CÃ³digo:</h5>
                     </div>
                     <div class="form-group col-md-3">
                         <h5>Valor:</h5>
@@ -39,7 +38,7 @@
                 </div>
                 <div class="form-row justify-content-between">
                     <div class="form-group col-md-5">
-                        <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código" required>
+                        <input type="text" class="form-control" id="codigo" name="codigo" placeholder="CÃ³digo" required>
                     </div>
                     <div class="form-group col-md-3">
                         <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" required>

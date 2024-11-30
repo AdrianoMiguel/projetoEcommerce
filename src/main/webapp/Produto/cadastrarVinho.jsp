@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
@@ -105,7 +104,7 @@
                         <input type="text" class="form-control" id="custo" name="custo" placeholder="Custo Unit.">
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" class="form-control" id="preco" name="preco" placeholder="Preço de Venda">
+                        <input type="text" class="form-control" id="preco" name="preco" placeholder="PreÃ§o de Venda">
                     </div>
                     <div class="form-group col-md-3">
                         <input type="text" class="form-control" id="qtdeEstoque" name="qtdeEstoque" placeholder="Qtde Estoque">

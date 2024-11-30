@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
@@ -67,7 +66,7 @@
                     <div class="form-group col-md-3 d-flex">TIPO:
                         <div id="tiposVinhoContainer" class="form-control"></div>
                     </div>
-                    <div class="form-group col-md-3 d-flex">PAÕS:
+                    <div class="form-group col-md-3 d-flex">PA√çS:
                         <div id="paisesContainer" class="form-control"></div>
                     </div>
                     <div class="form-group col-md-3 d-flex">VOLUME(ML):
@@ -78,7 +77,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-3 d-flex">GRUPO PRECIFICA«√O:</div>
+                    <div class="form-group col-md-3 d-flex">GRUPO PRECIFICA√á√ÉO:</div>
                     <div class="form-group col-md-2 d-flex">
                         <div id="gruposPrecificacaoContainer" class="form-control"></div>
                     </div>
@@ -95,7 +94,7 @@
                 </div>
 
                 <div class="form-row">
-                    <P>DESCRI«√O:</P>
+                    <P>DESCRI√á√ÉO:</P>
                     <div class="form-group col-md-12">
                         <textarea id="descricao" name="descricao" placeholder="descricao" class="form-control">${vinho.descricao}</textarea>
                     </div>
@@ -105,7 +104,7 @@
                         <input type="text" class="form-control" id="maiorCusto" name="maiorCusto" placeholder="Custo Unit."value='${vinho.maiorCusto}'>
                     </div>
                     <div class="form-group col-md-4 d-flex">PRECO:
-                        <input type="text" class="form-control" id="preco" name="preco" placeholder="PreÁo de Venda" value='${vinho.preco}'>
+                        <input type="text" class="form-control" id="preco" name="preco" placeholder="Pre√ßo de Venda" value='${vinho.preco}'>
                     </div>
                     <div class="form-group col-md-4 d-flex">ESTOQUE:
                         <input type="text" class="form-control" id="qtdeEstoque" name="qtdeEstoque" placeholder="Qtde Estoque"value='${vinho.qtdeEstoque}'>

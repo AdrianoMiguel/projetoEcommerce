@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script>
@@ -16,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Cart„o</title>
+    <title>Novo Cart√£o</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
@@ -28,7 +27,7 @@
 <div class="background-image">
     <div class="container d-flex justify-content-center align-items-start min-vh-100 py-5">
         <div class="form-container p-4 glass">
-            <h3 class="text-center mb-4">NOVO CART√O</h3>
+            <h3 class="text-center mb-4">NOVO CART√ÉO</h3>
             <form action=CtrlClienteNovoCartao method="post" >
                 <div class="form-row">
                     <div class="form-group col-md-7">

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
@@ -39,7 +38,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">NOTIFICAÇÕES</h5>
+                <h5 class="modal-title" id="modalLabel">NOTIFICAÃ‡Ã•ES</h5>
             </div>
             <div class="modal-body" id="notificacoesContainer">
             </div>
@@ -78,7 +77,7 @@
                                     <img src="imagens/vinhos/${vinho.id}.png" class="card-img"
                                          alt="Imagem do vinho ${vinho.nome}">
                                 </div>
-                                <!-- Coluna do conteúdo -->
+                                <!-- Coluna do conteÃºdo -->
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title">${vinho.nome}</h5>

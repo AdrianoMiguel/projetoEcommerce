@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script>
@@ -44,11 +43,11 @@
                             <ul>
                                 <div class="form-row d-flex align-items-center">
                                     <div class="col-md-6">NOME</div>
-                                    <div class="col-md-2">PAÕS</div>
+                                    <div class="col-md-2">PA√çS</div>
                                     <div class="col-md-1">SAFRA</div>
-                                    <div class="col-md-1">PRE«O</div>
+                                    <div class="col-md-1">PRE√áO</div>
                                     <div class="col-md-1">STATUS</div>
-                                    <div class="col-md-1">A«’ES</div>
+                                    <div class="col-md-1">A√á√ïES</div>
                                 </div>
                                 <c:forEach var="vinho" items="${vinhos}">
                                     <div class="form-row d-flex align-items-center">

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -63,7 +62,7 @@
                     <tr>
                         <th>Produto</th>
                         <th>Qtd.</th>
-                        <th>PreÁo</th>
+                        <th>Pre√ßo</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -114,7 +113,7 @@
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-start">
-                    <label>EndereÁo de Entrega:</label>
+                    <label>Endere√ßo de Entrega:</label>
                 </div>
                 <div class="form-row">
                     <div class="form-group d-flex col-md-9">
@@ -137,7 +136,7 @@
                 <div class="form-row d-flex">
                     <div class="form-group col-md-3">
                         <button id="novoEndereco" type="button" class="btn btn-menor"
-                                onclick="submitFormGeral('CtrlClienteNovoEndEnt','GET','carrinhoForm')">Novo EndereÁo
+                                onclick="submitFormGeral('CtrlClienteNovoEndEnt','GET','carrinhoForm')">Novo Endere√ßo
                         </button>
                     </div>
                 </div>
@@ -171,7 +170,7 @@
                     <input type="hidden" id="numCartoesHidden" name="numCartoesHidden" value="1">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label>Selecionar Cart„o:</label>
+                            <label>Selecionar Cart√£o:</label>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="cartao_0" name="cartao_0" class="form-control">
@@ -197,7 +196,7 @@
                 <div class="form-row d-flex">
                     <div class="form-group col-md-3">
                         <button id="novoCartaoBtn" type="button" class="btn btn-menor"
-                                onclick="submitFormGeral('CtrlClienteNovoCartao','GET','carrinhoForm')">Novo Cart„o
+                                onclick="submitFormGeral('CtrlClienteNovoCartao','GET','carrinhoForm')">Novo Cart√£o
                         </button>
                     </div>
                 </div>
