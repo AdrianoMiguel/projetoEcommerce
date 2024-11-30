@@ -4,12 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import dominio.cliente.*;
+import dominio.produto.MotivoCategoria;
+import dominio.produto.TpUva;
+import dominio.produto.Vinho;
 
 public class Factory {
     private final static FakerModificado faker = new FakerModificado();
 
     public static Cliente ClienteTeste() {
-
 
         List<Endereco> endEnt = new ArrayList<>();
         endEnt.add(new Endereco("Endereco de teste de Entrega",
@@ -117,5 +119,16 @@ public class Factory {
         }
         return cliente;
 
+    }
+
+    public static Vinho vinhoTeste() {
+        Double custo = Double.valueOf(faker.custo());
+        Vinho vinho = new Vinho(
+                faker.nomeDoVinho(), faker.safra(), faker.teorAlcoolico(), faker.descricao(),
+                faker.tipoDeVinho(), faker.tipoDeUva(), faker.pais(), custo, custo * 2,
+                faker.qtdeEstoque(), faker.precificacao(), faker.codigoDeBarras().toString(), faker.volume(),
+        true, MotivoCategoria.Em_Estoque, "Produto em estoque"
+        );
+        return vinho;
     }
 }

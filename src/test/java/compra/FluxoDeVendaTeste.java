@@ -37,6 +37,7 @@ public class FluxoDeVendaTeste {
     //RF0044 - Gerar cupom de troca após recebimento de itens
 
     //RN0031 - Validar estoque para adição de itens no carrinho
+    //RN0033 - Uso de cupom promocional para pagamento
     //RN0034 - Uso de diversos cartoes de credito
     //RN0035 - Uso de cupons junto a cartao de credito
     //RN0036 - Gerar cupom de troca
@@ -244,17 +245,27 @@ public class FluxoDeVendaTeste {
         Thread.sleep(2000);
         novoEndereco.click();
         driver.findElement(By.id("endEntNome1")).sendKeys("ENDERECO TESTE AUTOMATIZADO");
+        Thread.sleep(300);
         Select tiporesidEnt1 = new Select(driver.findElement(By.id("tiporesidEnt1")));
         tiporesidEnt1.selectByVisibleText(cliente.getEndEnt().get(0).getTipoResid().toString());
+        Thread.sleep(300);
         Select tipologradEnt1 = new Select(driver.findElement(By.id("tipologradEnt1")));
         tipologradEnt1.selectByVisibleText(cliente.getEndEnt().get(0).getTipoLograd().toString());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntLograd1")).sendKeys(cliente.getEndEnt().get(0).getLogradouro());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntNum1")).sendKeys(cliente.getEndEnt().get(0).getNumero().toString());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntBairro1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getNome());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntCidade1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getNome());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntEst1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getNome());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntCep1")).sendKeys(cliente.getEndEnt().get(0).getCep());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntPais1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getPais().getNome());
+        Thread.sleep(300);
         driver.findElement(By.id("endEntObs1")).sendKeys(cliente.getEndEnt().get(0).getObs());
         WebElement cadastrarEndBtn = driver.findElement(By.id("cadastrarEndBtn"));
         Thread.sleep(3000);
@@ -271,10 +282,14 @@ public class FluxoDeVendaTeste {
         Thread.sleep(2000);
         novoCartaoBtn.click();
         driver.findElement(By.id("cartaoNome1")).sendKeys(cliente.getCartoes().get(0).getNome());
+        Thread.sleep(300);
         Select bandeira1 = new Select(driver.findElement(By.id("bandeira1")));
         bandeira1.selectByVisibleText(cliente.getCartoes().get(0).getBandeira().toString().replace("_", " "));
+        Thread.sleep(300);
         driver.findElement(By.id("cartaoNum1")).sendKeys(cliente.getCartoes().get(0).getNumero());
+        Thread.sleep(300);
         driver.findElement(By.id("cartaoCodSeg1")).sendKeys(cliente.getCartoes().get(0).getCod().toString());
+        Thread.sleep(300);
         WebElement cadastrarCartaoBtn = driver.findElement(By.id("cadastrarCartaoBtn"));
         Thread.sleep(3000);
         actions.moveToElement(cadastrarCartaoBtn).perform();

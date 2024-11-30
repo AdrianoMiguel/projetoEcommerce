@@ -52,7 +52,7 @@
                                 <c:forEach var="vinho" items="${vinhos}">
                                     <div class="form-row d-flex align-items-center">
                                         <div class="col-md-6">${vinho.nome}</div>
-                                        <div class="col-md-2">${vinho.pais}</div>
+                                        <div class="col-md-2">${fn:replace(vinho.pais, '_', ' ')}</div>
                                         <div class="col-md-1">${vinho.safra}</div>
                                         <div class="col-md-1">${vinho.preco}</div>
                                         <div class="col-md-1 d-flex text-center justify-content-center">
@@ -65,8 +65,8 @@
                                         </div>
 
                                         <div class="col-md-1 d-flex">
-                                            <button class="btn btn-menor" onclick="window.location.href='CtrlProdutoAlterar?id=${vinho.id}'"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button class="btn btn-menor ml-1" onclick="window.location.href='CtrlProdutoExcluir?id=${vinho.id}'"><i class="fa-solid fa-trash"></i></button>
+                                            <button id="alterar_${vinho.id}" class="btn btn-menor" onclick="window.location.href='CtrlProdutoAlterar?id=${vinho.id}'"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button id="excluir_${vinho.id}" class="btn btn-menor ml-1" onclick="window.location.href='CtrlProdutoExcluir?id=${vinho.id}'"><i class="fa-solid fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </c:forEach>

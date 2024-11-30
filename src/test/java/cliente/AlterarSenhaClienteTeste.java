@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -32,13 +33,17 @@ public class AlterarSenhaClienteTeste {
         SlowdownListener listener = new SlowdownListener(1000);
         driver = new EventFiringDecorator(listener).decorate(baseDriver);
         //driver = new ChromeDriver();
-        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=33");
+        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=15");
     }
 
     @Test
     public void testePreenchimentoFormulario() throws Exception {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Actions actions = new Actions(driver);
         WebElement alterarDadosButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Alterar Senha')]")));
+        Thread.sleep(2000);
+        actions.moveToElement(alterarDadosButton).perform();
+        Thread.sleep(2000);
         alterarDadosButton.click();
         WebElement clienteIdElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("id")));
         clienteAntesDeAlterar = ClienteDAO.buscarClientePorId(Integer.valueOf(clienteIdElement.getAttribute("value")));
@@ -47,6 +52,8 @@ public class AlterarSenhaClienteTeste {
         driver.findElement(By.id("senha")).sendKeys(cliente.getSenha());
         driver.findElement(By.id("confirmaSenha")).sendKeys(cliente.getSenha());
         WebElement salvarAlteracoesButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alterações']")));
+        actions.moveToElement(salvarAlteracoesButton).perform();
+        Thread.sleep(2000);
         salvarAlteracoesButton.click();
     }
     @After

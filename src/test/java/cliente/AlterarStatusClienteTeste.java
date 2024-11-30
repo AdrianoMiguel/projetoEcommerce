@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -36,13 +37,17 @@ public class AlterarStatusClienteTeste {
     }
 
     @Test
-    public void testePreenchimentoFormulario() {
-
+    public void testePreenchimentoFormulario() throws InterruptedException {
+        Actions actions = new Actions(driver);
         driver.findElement(By.id("filtro")).sendKeys("brasil");
+        actions.moveToElement(driver.findElement(By.id("btnConsultar"))).perform();
         driver.findElement(By.id("btnConsultar")).click();
         WebElement form = driver.findElement(By.xpath("//input[@name='id' and @value='33']/ancestor::form"));
         // Localizar e clicar no botão submit dentro do formulário encontrado
         WebElement submitButton = form.findElement(By.xpath(".//button[@type='submit']"));
+        Thread.sleep(2000);
+        actions.moveToElement(driver.findElement(By.id("btnConsultar"))).perform();
+        Thread.sleep(2000);
         submitButton.click();
     }
 

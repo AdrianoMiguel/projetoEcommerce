@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -33,88 +34,125 @@ public class AlterarEnderecosClienteTeste {
         SlowdownListener listener = new SlowdownListener(1000);
         driver = new EventFiringDecorator(listener).decorate(baseDriver);
         //driver = new ChromeDriver();
-        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=33");
+        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=15");
     }
 
     @Test
     public void testePreenchimentoFormulario() throws Exception {
+        Actions actions = new Actions(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     WebElement alterarDadosButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Alterar Endereços')]")));
-        alterarDadosButton.click();
+    Thread.sleep(2000);
+    actions.moveToElement(alterarDadosButton).perform();
+    Thread.sleep(2000);
+    alterarDadosButton.click();
     WebElement clienteIdElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("id")));
     clienteAntesDeAlterar = ClienteDAO.buscarClientePorId(Integer.valueOf(clienteIdElement.getAttribute("value")));
 
     cliente = Factory.ClienteTeste();
         Select tiporesidRes = new Select(driver.findElement(By.id("tiporesidRes")));
         tiporesidRes.selectByVisibleText(cliente.getEndResid().getTipoResid().toString());
+        Thread.sleep(250);
         Select tipologradRes = new Select(driver.findElement(By.id("tipologradRes")));
         tipologradRes.selectByVisibleText(cliente.getEndResid().getTipoLograd().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endResLograd")).clear();
         driver.findElement(By.id("endResLograd")).sendKeys(cliente.getEndResid().getLogradouro());
+        Thread.sleep(250);
         driver.findElement(By.id("endResNum")).clear();
         driver.findElement(By.id("endResNum")).sendKeys(cliente.getEndResid().getNumero().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endResBairro")).clear();
         driver.findElement(By.id("endResBairro")).sendKeys(cliente.getEndResid().getBairro().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endResCidade")).clear();
         driver.findElement(By.id("endResCidade")).sendKeys(cliente.getEndResid().getBairro().getCidade().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endResEst")).clear();
         driver.findElement(By.id("endResEst")).sendKeys(cliente.getEndResid().getBairro().getCidade().getEstado().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endResCep")).clear();
         driver.findElement(By.id("endResCep")).sendKeys(cliente.getEndResid().getCep());
+        Thread.sleep(250);
         driver.findElement(By.id("endResPais")).clear();
         driver.findElement(By.id("endResPais")).sendKeys(cliente.getEndResid().getBairro().getCidade().getEstado().getPais().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endResObs")).clear();
         driver.findElement(By.id("endResObs")).sendKeys(cliente.getEndResid().getObs());
+        Thread.sleep(3000);
 
         // Preencher Endereço de Cobrança
         Select tiporesidCob = new Select(driver.findElement(By.id("tiporesidCob")));
         tiporesidCob.selectByVisibleText(cliente.getEndCob().getTipoResid().toString());
+        Thread.sleep(250);
         Select tipologradCob = new Select(driver.findElement(By.id("tipologradCob")));
         tipologradCob.selectByVisibleText(cliente.getEndCob().getTipoLograd().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobLograd")).clear();
         driver.findElement(By.id("endCobLograd")).sendKeys(cliente.getEndCob().getLogradouro());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobNum")).clear();
         driver.findElement(By.id("endCobNum")).sendKeys(cliente.getEndCob().getNumero().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobBairro")).clear();
         driver.findElement(By.id("endCobBairro")).sendKeys(cliente.getEndCob().getBairro().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobCidade")).clear();
         driver.findElement(By.id("endCobCidade")).sendKeys(cliente.getEndCob().getBairro().getCidade().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobEst")).clear();
         driver.findElement(By.id("endCobEst")).sendKeys(cliente.getEndCob().getBairro().getCidade().getEstado().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobCep")).clear();
         driver.findElement(By.id("endCobCep")).sendKeys(cliente.getEndCob().getCep());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobPais")).clear();
         driver.findElement(By.id("endCobPais")).sendKeys(cliente.getEndCob().getBairro().getCidade().getEstado().getPais().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endCobObs")).clear();
         driver.findElement(By.id("endCobObs")).sendKeys(cliente.getEndCob().getObs());
+        Thread.sleep(3000);
 
 
         // Preencher Endereço de Entrega
         driver.findElement(By.id("expandir1")).click();
         driver.findElement(By.id("endEntNome1")).clear();
         driver.findElement(By.id("endEntNome1")).sendKeys(cliente.getEndEnt().get(0).getNome());
+        Thread.sleep(250);
         Select tiporesidEnt1 = new Select(driver.findElement(By.id("tiporesidEnt1")));
         tiporesidEnt1.selectByVisibleText(cliente.getEndEnt().get(0).getTipoResid().toString());
+        Thread.sleep(250);
         Select tipologradEnt1 = new Select(driver.findElement(By.id("tipologradEnt1")));
         tipologradEnt1.selectByVisibleText(cliente.getEndEnt().get(0).getTipoLograd().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntLograd1")).clear();
         driver.findElement(By.id("endEntLograd1")).sendKeys(cliente.getEndEnt().get(0).getLogradouro());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntNum1")).clear();
         driver.findElement(By.id("endEntNum1")).sendKeys(cliente.getEndEnt().get(0).getNumero().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntBairro1")).clear();
         driver.findElement(By.id("endEntBairro1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntCidade1")).clear();
         driver.findElement(By.id("endEntCidade1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntEst1")).clear();
         driver.findElement(By.id("endEntEst1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntCep1")).clear();
         driver.findElement(By.id("endEntCep1")).sendKeys(cliente.getEndEnt().get(0).getCep());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntPais1")).clear();
         driver.findElement(By.id("endEntPais1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getPais().getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("endEntObs1")).clear();
         driver.findElement(By.id("endEntObs1")).sendKeys(cliente.getEndEnt().get(0).getObs());
+        Thread.sleep(250);
     WebElement salvarAlteracoesButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alterações']")));
-        salvarAlteracoesButton.click();
+        actions.moveToElement(salvarAlteracoesButton).perform();
+        Thread.sleep(5000);
+    salvarAlteracoesButton.click();
 }
 @After
 public void tearDown() throws Exception {

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
     const idCliente = '${sessionScope.idCliente != null ? sessionScope.idCliente : "null"}';
@@ -85,7 +86,7 @@
                                             Safra: ${vinho.safra}<br>
                                             Teor Alc.: ${vinho.teorAlc}%<br>
                                             Vinho ${vinho.tipoVinho}<br>
-                                            Origem: ${vinho.pais}<br>
+                                            Origem: ${fn:replace(vinho.pais, '_', ' ')}<br>
 
                                         </p>
                                         <h5 class="card-title">R$<fmt:formatNumber
@@ -106,7 +107,7 @@
         </div>
     </div>
 </div>
-<div class="chatbot-icon" onclick="toggleChat()"> <i class="fa-regular fa-comment-dots"></i>
+<div id="chatbot-icon" class="chatbot-icon" onclick="toggleChat()"> <i class="fa-regular fa-comment-dots"></i>
 </div>
 
 <div class="chatbot-window" id="chatbotWindow">
@@ -116,7 +117,7 @@
     </div>
     <div class="chatbot-input-container">
         <input type="text" class="chatbot-input" id="userMessage" placeholder="Digite sua mensagem...">
-        <button class="chatbot-send-button" onclick="enviarMensagem()">Enviar</button>
+        <button id="enviarMensagem" class="chatbot-send-button" onclick="enviarMensagem()">Enviar</button>
     </div>
 </div>
 

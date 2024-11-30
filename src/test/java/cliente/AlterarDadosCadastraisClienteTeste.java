@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -33,13 +34,17 @@ public class AlterarDadosCadastraisClienteTeste {
         SlowdownListener listener = new SlowdownListener(1000);
         driver = new EventFiringDecorator(listener).decorate(baseDriver);
         //driver = new ChromeDriver();
-        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=33");
+        driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteEncaminharID?id=15");
     }
 
     @Test
     public void testePreenchimentoFormulario() throws Exception {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Actions actions = new Actions(driver);
         WebElement alterarDadosButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Alterar Dados Cadastrais')]")));
+        Thread.sleep(2000);
+        actions.moveToElement(alterarDadosButton).perform();
+        Thread.sleep(2000);
         alterarDadosButton.click();
         WebElement clienteIdElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("id")));
         clienteAntesDeAlterar = ClienteDAO.buscarClientePorId(Integer.valueOf(clienteIdElement.getAttribute("value")));
@@ -47,22 +52,32 @@ public class AlterarDadosCadastraisClienteTeste {
         cliente = Factory.ClienteTeste();
         driver.findElement(By.id("nome")).clear();
         driver.findElement(By.id("nome")).sendKeys(cliente.getNome());
+        Thread.sleep(250);
         driver.findElement(By.id("cpf")).clear();
         driver.findElement(By.id("cpf")).sendKeys(cliente.getCpf());
+        Thread.sleep(250);
         WebElement generoSelect = driver.findElement(By.id("genero"));
         Select genero = new Select(generoSelect);
         genero.selectByVisibleText(cliente.getGenero().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("data-nascimento")).clear();
         driver.findElement(By.id("data-nascimento")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format(cliente.getDataNascimento()));
+        Thread.sleep(250);
         driver.findElement(By.id("email")).clear();
         driver.findElement(By.id("email")).sendKeys(cliente.getContato().getEmail());
+        Thread.sleep(250);
         Select tipotel = new Select(driver.findElement(By.id("tipotel")));
         tipotel.selectByVisibleText(cliente.getContato().getTelefone().getTipo().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("ddd")).clear();
         driver.findElement(By.id("ddd")).sendKeys(cliente.getContato().getTelefone().getDdd().toString());
+        Thread.sleep(250);
         driver.findElement(By.id("numerotel")).clear();
         driver.findElement(By.id("numerotel")).sendKeys(cliente.getContato().getTelefone().getNumero().toString());
+        Thread.sleep(250);
         WebElement salvarAlteracoesButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alterações']")));
+        actions.moveToElement(salvarAlteracoesButton).perform();
+        Thread.sleep(2000);
         salvarAlteracoesButton.click();
     }
     @After
