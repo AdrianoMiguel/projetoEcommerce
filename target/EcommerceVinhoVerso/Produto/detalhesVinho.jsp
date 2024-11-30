@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
@@ -37,14 +36,14 @@
                         <img src="imagens/vinhos/${vinho.id}.png" alt="Imagem do vinho ${vinho.nome}"
                              style=" max-height: 350px; object-fit: cover;">
                     </div>
-                    <!-- Coluna do conteúdo -->
+                    <!-- Coluna do conteÃºdo -->
                     <div class="col-md-8">
                         <div class="form-row">
                             <div class="col-md-8">
                                 <h5>
                                     Vinho ${vinho.tipoVinho}<br><br>
                                     Safra: </h5>${vinho.safra}<br>
-                                <h5> Teor Alcoólico: </h5>${vinho.teorAlc}%<br>
+                                <h5> Teor AlcoÃ³lico: </h5>${vinho.teorAlc}%<br>
                                 <h5> Origem: </h5>${vinho.pais}<br>
                                 <h5> Volume:</h5> ${vinho.volume}ml<br>
                             </div>
@@ -61,7 +60,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-12">
-                                    <h5> Descrição:</h5>
+                                    <h5> DescriÃ§Ã£o:</h5>
                                     ${vinho.descricao}
                                 </div>
                             </div>

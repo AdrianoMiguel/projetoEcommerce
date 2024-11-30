@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -36,13 +36,13 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                <strong>Usu·rio:</strong> ${log.usuarioAcao}<br>
+                                <strong>Usu√°rio:</strong> ${log.usuarioAcao}<br>
                                     </div>
                                     <div class="col-md-6">
-                                <strong>Tipo de AÁ„o:</strong> ${log.tipoAcao}<br>
+                                <strong>Tipo de A√ß√£o:</strong> ${log.tipoAcao}<br>
                                     </div>
                                 </div>
-                                <strong>Detalhes da AÁ„o:</strong> ${log.detalhesAcao}<br>
+                                <strong>Detalhes da A√ß√£o:</strong> ${log.detalhesAcao}<br>
                             </div>
                             <hr>
                         </c:forEach>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
@@ -106,7 +105,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                <div class="form-group col-md-6"><p>ENDERECO DE COBRANÇA</p></div>
+                <div class="form-group col-md-6"><p>ENDERECO DE COBRANÃ‡A</p></div>
                     <div class="form-group col-md-2"></div>
                     <div class="form-group col-md-4"><button type="button" class="btn btn-menor" onclick="copiarEndereco('Cob')">Repetir Endereco Residencial</button></div>
                 </div>
@@ -218,7 +217,7 @@
                 </div>
 
                 </div>
-                <p>DADOS DO CARTÃO</p>
+                <p>DADOS DO CARTÃƒO</p>
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <input type="text" class="form-control" id="cartaoNome1" name="cartaoNome1" placeholder="Nome Impresso no Cartao" >

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
     const nomeCliente = '${sessionScope.nomeCliente != null ? sessionScope.nomeCliente : "null"}';
@@ -34,12 +34,12 @@
                     <input type="hidden" name="encaminhamento" id="encaminhamento" value="">
 
                     <button id="alterarDadosCadastraisBtn" type="button" class="btn" onclick="submitForm('alterarDadosCadastraisCliente')">Alterar Dados Cadastrais</button><br>
-                    <button id="alterarEnderecosBtn"type="button" class="btn" onclick="submitForm('alterarEnderecosCliente')">Alterar Endereços</button><br>
+                    <button id="alterarEnderecosBtn"type="button" class="btn" onclick="submitForm('alterarEnderecosCliente')">Alterar EndereÃ§os</button><br>
                     <button id="alterarCartoesBtn" type="button" class="btn" onclick="submitForm('alterarCartoesCliente')">Alterar cartoes</button><br>
                     <button id="alterarSenhaBtn" type="button" class="btn" onclick="submitForm('alterarSenhaCliente')">Alterar Senha</button><br>
                     <button id="consultarLogsBtn" type="button" class="btn" onclick="submitForm('consultarLogs')">Consultar Logs</button><br>
                     <button id="consultarCuponsBtn" type="button" class="btn" onclick="submitForm('consultarCupons')">Consultar Cupons</button><br>
-                    <button id="transacoesBtn" type="button" class="btn" onclick="submitForm('transacoes')">Consultar Transações</button><br>
+                    <button id="transacoesBtn" type="button" class="btn" onclick="submitForm('transacoes')">Consultar TransaÃ§Ãµes</button><br>
                     <button id="voltar" class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
                 </form>
             </div>

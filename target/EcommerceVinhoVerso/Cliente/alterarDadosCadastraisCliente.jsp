@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script>
@@ -83,7 +82,7 @@
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-8">
-                        <button type="submit" class="btn">Salvar Alterações</button>
+                        <button type="submit" class="btn">Salvar AlteraÃ§Ãµes</button>
                     </div>
                 </div>
             </form>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -34,7 +33,7 @@
                             <th>Data</th>
                             <th>Pedido</th>
                             <th>Status</th>
-                            <th>AÁ„o</th>
+                            <th>A√ß√£o</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,7 +59,7 @@
                                 </td>
                             </tr>
                             <tr id="detalhes${compra.id}" class="collapse">
-                                <!-- A classe collapse È aplicada inicialmente -->
+                                <!-- A classe collapse √© aplicada inicialmente -->
                                 <td colspan="3">
                                     <table class="table">
                                         <tr>
@@ -116,7 +115,7 @@
                                             </tr>
                                             <c:forEach var="pagamento" items="${compra.pagamentos}">
                                                 <tr>
-                                                    <td>Cart„o ${fn:replace(pagamento.cartao.bandeira, '_', ' ')} Final ${fn:substring(pagamento.cartao.numero, fn:length(pagamento.cartao.numero) - 4, fn:length(pagamento.cartao.numero))}</td>
+                                                    <td>Cart√£o ${fn:replace(pagamento.cartao.bandeira, '_', ' ')} Final ${fn:substring(pagamento.cartao.numero, fn:length(pagamento.cartao.numero) - 4, fn:length(pagamento.cartao.numero))}</td>
                                                     <td></td>
                                                     <td>R$<fmt:formatNumber value="${pagamento.valor}"
                                                                             pattern="#,##0.00"/></td>
@@ -124,7 +123,7 @@
                                             </c:forEach>
                                         </c:if>
                                         <tr>
-                                            <th>EndereÁo de Entrega:</th>
+                                            <th>Endere√ßo de Entrega:</th>
                                         </tr>
                                         <tr>
                                             <th>

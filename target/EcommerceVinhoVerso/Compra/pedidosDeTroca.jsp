@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -70,7 +69,7 @@
                                             <button type="button" class="btn btn-menor ml-1" id="reporSimBtn_${compra.id}" onclick="Repor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">
                                                 SIM
                                             </button>
-                                            <button type="button" class="btn btn-menor ml-1" id="reporNaoBtn_${compra.id}" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃO
+                                            <button type="button" class="btn btn-menor ml-1" id="reporNaoBtn_${compra.id}" onclick="naoRepor(${compra.id}); submitFormGeral('CtrlCompraPedidosDeTroca','post','statusContainer_${compra.id}')">NÃƒO
 
                                             </button>
                                         </c:if>
@@ -78,7 +77,7 @@
                                 </td>
                             </tr>
                             <tr id="detalhes${compra.id}" class="collapse">
-                                <!-- A classe collapse é aplicada inicialmente -->
+                                <!-- A classe collapse Ã© aplicada inicialmente -->
                                 <td colspan="3">
                                     <table class="table">
                                         <tr>
@@ -128,7 +127,7 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th>Endereço de Entrega:</th>
+                                            <th>EndereÃ§o de Entrega:</th>
                                         </tr>
                                         <tr>
                                             <th>
