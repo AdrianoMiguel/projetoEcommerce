@@ -67,10 +67,10 @@
                                     <input type="hidden" name="id" value="${cliente.id}">
                                     <input type="hidden" name="status" value="${!cliente.status}">
                                     <c:if test="${cliente.status}">
-                                        <button type="submit" class="btn btn-menor">INATIVAR</button>
+                                        <button id="mudarStatus_${cliente.id}" type="submit" class="btn btn-menor">INATIVAR</button>
                                     </c:if>
                                     <c:if test="${!cliente.status}">
-                                        <button type="submit" class="btn btn-menor">ATIVAR</button>
+                                        <button id="mudarStatus_${cliente.id}" type="submit" class="btn btn-menor">ATIVAR</button>
                                     </c:if>
                                 </form>
                                 <form class="d-flex">
@@ -78,7 +78,7 @@
                                         onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'"><i
                                         class="fa-solid fa-pen-to-square"></i></button>
 
-                                <button type="button" class="btn btn-menor ml-1"
+                                <button id="excluir_${cliente.id}" type="button" class="btn btn-menor ml-1"
                                         onclick="window.location.href='CtrlClienteExcluir?id=${cliente.id}'"><i
                                         class="fa-solid fa-trash"></i></button>
                                 </form>

@@ -77,7 +77,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <button class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
+                        <button id="botaoVoltar" class="btn" type="button" onclick="window.location.href='CtrlClienteEncaminharID?id=${cliente.id}'">Voltar</button>
                     </div>
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-8">

@@ -48,7 +48,7 @@
                         </c:forEach>
                     </ul>
                 </div>
-                <button class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
+                <button id="botaoVoltar" class="btn" type="button" onclick="javascript:window.history.go(-1);">Voltar</button>
             </div>
         </div>
     </div>

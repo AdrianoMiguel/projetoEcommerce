@@ -210,6 +210,8 @@ public class CadastroProdutoTeste {
         detalhesButton.click();
         Thread.sleep(3000);
 
+
+
         WebElement adminDropdown4 = driver.findElement(By.id("adminDropdown"));
         actions.moveToElement(adminDropdown4).perform();
         adminDropdown4.click();
