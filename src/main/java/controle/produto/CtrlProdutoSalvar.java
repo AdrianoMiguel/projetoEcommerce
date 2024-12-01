@@ -92,8 +92,12 @@ public class CtrlProdutoSalvar extends HttpServlet {
         try {
 
             String mensagem = fachada.salvar(vinho);
-            Estoque estoque = new Estoque(vinho.getId(), custo, qtdeEstoque, fornecedor);
-            mensagem += fachada.salvar(estoque);
+
+            if (mensagem.equals("Registro realizado com sucesso!")) {
+                Estoque estoque = new Estoque(vinho.getId(), custo, qtdeEstoque, fornecedor);
+                mensagem = fachada.salvar(estoque);
+            }
+
             request.setAttribute("mensagem",mensagem);
             request.setAttribute("vinhoId", vinho.getId());
             RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");

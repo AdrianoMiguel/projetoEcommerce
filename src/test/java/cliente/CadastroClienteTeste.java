@@ -55,7 +55,7 @@ public class CadastroClienteTeste {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
         WebDriver baseDriver = new ChromeDriver();
-        SlowdownListener listener = new SlowdownListener(1000);
+        SlowdownListener listener = new SlowdownListener(700);
         driver = new EventFiringDecorator(listener).decorate(baseDriver);
         //driver = new ChromeDriver();
         driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlClienteNovo");
@@ -103,6 +103,17 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("endResObs")).sendKeys(cliente.getEndResid().getObs());
         Thread.sleep(2000);
 
+        // Submeter o formulário
+        WebElement submitButton4 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton4).perform();
+        Thread.sleep(2000);
+        submitButton4.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar8 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar8).perform();
+        Thread.sleep(1000);
+        botaoVoltar8.click();
+
 
         // Preencher Endereço de Cobrança
         Select tiporesidCob = new Select(driver.findElement(By.id("tiporesidCob")));
@@ -131,12 +142,19 @@ public class CadastroClienteTeste {
         Thread.sleep(2000);
 
 
-
-        // Preencher Endereço de Entrega
-        actions.moveToElement(driver.findElement(By.id("expandir1"))).perform();
+        // Submeter o formulário
+        WebElement submitButton5 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton5).perform();
         Thread.sleep(2000);
+        submitButton5.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar9 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar9).perform();
+        Thread.sleep(1000);
+        botaoVoltar9.click();
+
         driver.findElement(By.id("expandir1")).click();
-        driver.findElement(By.id("endEntNome1")).sendKeys(cliente.getEndEnt().get(0).getNome());
+        driver.findElement(By.id("endEntNome1")).sendKeys("teste");
         Thread.sleep(300);
         Select tiporesidEnt1 = new Select(driver.findElement(By.id("tiporesidEnt1")));
         tiporesidEnt1.selectByVisibleText(cliente.getEndEnt().get(0).getTipoResid().toString());
@@ -235,17 +253,51 @@ public class CadastroClienteTeste {
 
 
         // Preencher senha
+        driver.findElement(By.id("senha")).sendKeys("teste");
+        driver.findElement(By.id("confirmasenha")).sendKeys("teste");
+
+
+        // Submeter o formulário
+        WebElement submitButton7 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton7).perform();
+        Thread.sleep(2000);
+        submitButton7.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar11 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar11).perform();
+        Thread.sleep(1000);
+        botaoVoltar11.click();
+
+        actions.moveToElement(driver.findElement(By.id("endEntNome1"))).perform();
+        Thread.sleep(2000);
+        driver.findElement(By.id("endEntNome1")).clear();
+        driver.findElement(By.id("endEntNome1")).sendKeys(cliente.getEndEnt().get(0).getNome());
+        Thread.sleep(2000);
+
+        // Submeter o formulário
+        WebElement submitButton8 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton8).perform();
+        Thread.sleep(2000);
+        submitButton8.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar12 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar12).perform();
+        Thread.sleep(1000);
+        botaoVoltar12.click();
+
         driver.findElement(By.id("senha")).sendKeys(cliente.getSenha());
         Thread.sleep(300);
         driver.findElement(By.id("confirmasenha")).sendKeys(cliente.getSenha());
-        //driver.findElement(By.id("senha")).sendKeys("teste");
-        //driver.findElement(By.id("confirmasenha")).sendKeys("teste");
+
+
 
         // Submeter o formulário
         WebElement submitButton = driver.findElement(By.id("cadastrar"));
         actions.moveToElement(submitButton).perform();
         Thread.sleep(2000);
         submitButton.click();
+
+
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement clienteIdElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("clienteId")));
@@ -272,7 +324,7 @@ public class CadastroClienteTeste {
         WebElement consultarCliente2 = driver.findElement(By.id("consultarCliente"));
         actions.moveToElement(consultarCliente2).perform();
         consultarCliente2.click();
-        driver.findElement(By.id("filtro")).sendKeys(cliente.getEndResid().getLogradouro() + " " + cliente.getEndResid().getBairro().getCidade().getNome());
+        driver.findElement(By.id("filtro")).sendKeys(cliente.getEndResid().getTipoLograd() + " " + cliente.getEndResid().getLogradouro() + " " + cliente.getEndResid().getBairro().getCidade().getNome());
         WebElement buscarClientes2 = driver.findElement(By.id("btnConsultar"));
         actions.moveToElement(buscarClientes2).perform();
         buscarClientes2.click();
@@ -421,7 +473,7 @@ public class CadastroClienteTeste {
         // Preencher Endereço de Entrega
         driver.findElement(By.id("expandir1")).click();
         driver.findElement(By.id("endEntNome1")).clear();
-        driver.findElement(By.id("endEntNome1")).sendKeys(cliente2.getEndEnt().get(0).getNome());
+        driver.findElement(By.id("endEntNome1")).sendKeys("ENDERECO DE TESTE ALTERADO");
         Thread.sleep(250);
         Select tiporesidEnt3 = new Select(driver.findElement(By.id("tiporesidEnt1")));
         tiporesidEnt3.selectByVisibleText(cliente2.getEndEnt().get(0).getTipoResid().toString());

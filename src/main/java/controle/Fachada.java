@@ -11,7 +11,9 @@ import dominio.estoque.Estoque;
 import dominio.produto.Vinho;
 import negocio.*;
 import negocio.cliente.*;
+import negocio.cliente.ValidadorDadosObg;
 import negocio.compra.*;
+import negocio.produto.*;
 import persistencia.*;
 
 import java.util.*;
@@ -31,7 +33,7 @@ public class Fachada implements IFachada {
             this.daos.put(Compra.class.getName(), new CompraDAO());
 
             List<IStrategy> rnClientes = new ArrayList();
-            rnClientes.add(new ValidadorDadosObg());
+            rnClientes.add(new negocio.cliente.ValidadorDadosObg());
             rnClientes.add(new ValidadorFraseCurtaEndereco());
             rnClientes.add(new ValidadorSenhaForte());
             rnClientes.add(new CriptografiaDeSenha());
@@ -41,6 +43,12 @@ public class Fachada implements IFachada {
             rnLogs.add(new GeradorLog());
 
             List<IStrategy> rnVinhos = new ArrayList();
+            rnVinhos.add(new negocio.produto.ValidadorDadosObg());
+            rnVinhos.add(new DefinidorVlrMinVenda());
+            rnVinhos.add(new ValidadorMargLuc());
+            rnVinhos.add(new ValidadorAssociacaoMotivoAtivacao());
+            rnVinhos.add(new ValidadorAssociacaoMotivoInativacao());
+            rnVinhos.add(new AtribuidorDtaSemEst());
 
             List<IStrategy> rnEstoque = new ArrayList();
 

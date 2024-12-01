@@ -1,6 +1,5 @@
 package produto;
 
-import dominio.cliente.Cliente;
 import dominio.produto.TpUva;
 import dominio.produto.Vinho;
 import org.junit.After;
@@ -12,16 +11,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import persistencia.ClienteDAO;
+
 import utils.Factory;
 import utils.FakerModificado;
 import utils.SlowdownListener;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 
 public class CadastroProdutoTeste {
     //ANOTACOES REFERENTE AO TESTE
@@ -46,7 +42,7 @@ public class CadastroProdutoTeste {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
         WebDriver baseDriver = new ChromeDriver();
-        SlowdownListener listener = new SlowdownListener(1000);
+        SlowdownListener listener = new SlowdownListener(500);
         driver = new EventFiringDecorator(listener).decorate(baseDriver);
         //driver = new ChromeDriver();
         driver.get("http://localhost:8080/EcommerceVinhoVerso_war/CtrlProdutoNovo");
@@ -57,58 +53,214 @@ public class CadastroProdutoTeste {
         vinho = Factory.vinhoTeste();
         Actions actions = new Actions(driver);
 
+        Thread.sleep(2000);
+        WebElement submitButton4 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton4).perform();
+        Thread.sleep(2000);
+        submitButton4.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar8 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar8).perform();
+        Thread.sleep(1000);
+        botaoVoltar8.click();
+
+        actions.moveToElement(driver.findElement(By.id("nome"))).perform();
         driver.findElement(By.id("nome")).sendKeys(vinho.getNome());
         Thread.sleep(300);
+
+        WebElement submitButton5 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton5).perform();
+        Thread.sleep(2000);
+        submitButton5.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar9 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar9).perform();
+        Thread.sleep(1000);
+        botaoVoltar9.click();
+
+        actions.moveToElement(driver.findElement(By.id("safra"))).perform();
         driver.findElement(By.id("safra")).sendKeys(vinho.getSafra().toString());
         Thread.sleep(300);
+
+        WebElement submitButton6 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton6).perform();
+        Thread.sleep(2000);
+        submitButton6.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar10 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar10).perform();
+        Thread.sleep(1000);
+        botaoVoltar10.click();
+
+        actions.moveToElement(driver.findElement(By.id("tipoVinho"))).perform();
         WebElement tipoVinhoSelect = driver.findElement(By.id("tipoVinho"));
         Select tipoVinho = new Select(tipoVinhoSelect);
         tipoVinho.selectByVisibleText(vinho.getTipoVinho().toString());
         Thread.sleep(300);
+
+        WebElement submitButton7 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton7).perform();
+        Thread.sleep(2000);
+        submitButton7.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar11 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar11).perform();
+        Thread.sleep(1000);
+        botaoVoltar11.click();
+
+        actions.moveToElement(driver.findElement(By.id("pais"))).perform();
         WebElement paisSelect = driver.findElement(By.id("pais"));
         Select pais = new Select(paisSelect);
         pais.selectByVisibleText(vinho.getPais().toString().replace("_", " "));
         Thread.sleep(300);
+
+        WebElement submitButton8 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton8).perform();
+        Thread.sleep(2000);
+        submitButton8.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar12 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar12).perform();
+        Thread.sleep(1000);
+        botaoVoltar12.click();
+
+        actions.moveToElement(driver.findElement(By.id("volume"))).perform();
         driver.findElement(By.id("volume")).sendKeys(vinho.getVolume().toString());
         Thread.sleep(300);
         driver.findElement(By.id("teorAlc")).sendKeys(vinho.getTeorAlc().toString());
         Thread.sleep(300);
+
+        WebElement submitButton9 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton9).perform();
+        Thread.sleep(2000);
+        submitButton9.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar13 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar13).perform();
+        Thread.sleep(1000);
+        botaoVoltar13.click();
+
+        actions.moveToElement(driver.findElement(By.id("grupoPrecif"))).perform();
         WebElement grupoPrecificacaoSelect = driver.findElement(By.id("grupoPrecif"));
         Select grupoPrecificacao = new Select(grupoPrecificacaoSelect);
         grupoPrecificacao.selectByVisibleText(vinho.getGrupoPrecificacao().toString());
         Thread.sleep(300);
+
+        WebElement submitButton10 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton10).perform();
+        Thread.sleep(2000);
+        submitButton10.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar14 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar14).perform();
+        Thread.sleep(1000);
+        botaoVoltar14.click();
+
+        actions.moveToElement(driver.findElement(By.id("codBarras"))).perform();
         driver.findElement(By.id("codBarras")).sendKeys(vinho.getCodBarras());
         Thread.sleep(300);
+
+        WebElement submitButton11 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton11).perform();
+        Thread.sleep(2000);
+        submitButton11.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar15 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar15).perform();
+        Thread.sleep(1000);
+        botaoVoltar15.click();
 
         for (TpUva tipoUva : vinho.getTipoUva()) {
             WebElement tipoUvaCheckbox = driver.findElement(By.id(tipoUva.toString()));
             tipoUvaCheckbox.click();
-            Thread.sleep(300);
+            Thread.sleep(200);
         }
 
+        WebElement submitButton12 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton12).perform();
+        Thread.sleep(2000);
+        submitButton12.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar16 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar16).perform();
+        Thread.sleep(1000);
+        botaoVoltar16.click();
+
+        actions.moveToElement(driver.findElement(By.id("descricao"))).perform();
         driver.findElement(By.id("descricao")).sendKeys(vinho.getDescricao());
         Thread.sleep(300);
 
+        WebElement submitButton13 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton13).perform();
+        Thread.sleep(2000);
+        submitButton13.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar17 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar17).perform();
+        Thread.sleep(1000);
+        botaoVoltar17.click();
+
+        actions.moveToElement(driver.findElement(By.id("fornecedor"))).perform();
         WebElement fornecedorSelect = driver.findElement(By.id("fornecedor"));
         Select fornecedor = new Select(fornecedorSelect);
         fornecedor.selectByVisibleText(faker.fornecedor().toString().replace("_", " "));
         Thread.sleep(300);
         driver.findElement(By.id("custo")).sendKeys(vinho.getMaiorCusto().toString());
         Thread.sleep(300);
+        driver.findElement(By.id("preco")).sendKeys(vinho.getMaiorCusto().toString());
+        Thread.sleep(300);
+
+        WebElement submitButton16 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton16).perform();
+        Thread.sleep(2000);
+        submitButton16.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar20 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar20).perform();
+        Thread.sleep(1000);
+        botaoVoltar20.click();
+
+        actions.moveToElement(driver.findElement(By.id("preco"))).perform();
+        driver.findElement(By.id("preco")).clear();
         driver.findElement(By.id("preco")).sendKeys(vinho.getPreco().toString());
         Thread.sleep(300);
+
         driver.findElement(By.id("qtdeEstoque")).sendKeys(faker.qtdeEstoque().toString());
         Thread.sleep(300);
+
         WebElement statusSelect = driver.findElement(By.id("status"));
         Select status = new Select(statusSelect);
         status.selectByVisibleText("Ativo");
         Thread.sleep(300);
+
+        WebElement submitButton14 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton14).perform();
+        Thread.sleep(2000);
+        submitButton14.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar18 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar18).perform();
+        Thread.sleep(1000);
+        botaoVoltar18.click();
+
         WebElement motivoCategoriaSelect = driver.findElement(By.id("motivoCategoria"));
         Select motivoCategoria = new Select(motivoCategoriaSelect);
         motivoCategoria.selectByVisibleText(vinho.getMotivo().getCategoria().toString().replace("_", " "));
         Thread.sleep(300);
+
+        WebElement submitButton15 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton15).perform();
+        Thread.sleep(2000);
+        submitButton15.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar19 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar19).perform();
+        Thread.sleep(1000);
+        botaoVoltar19.click();
+
         driver.findElement(By.id("justificativa")).sendKeys(vinho.getMotivo().getJustificativa());
         Thread.sleep(300);
+
         // Submeter o formulário
         WebElement submitButton = driver.findElement(By.id("cadastrar"));
         actions.moveToElement(submitButton).perform();
@@ -134,10 +286,23 @@ public class CadastroProdutoTeste {
         vinho.setId(Integer.valueOf(botaoAlterar.getAttribute("id").replace("alterar_", "")));
         botaoAlterar.click();
 
+
         WebElement statusSelect2 = driver.findElement(By.id("status"));
         Select status2 = new Select(statusSelect2);
         status2.selectByVisibleText("Inativo");
         Thread.sleep(300);
+        driver.findElement(By.id("justificativa")).clear();
+
+        WebElement submitButton17 = driver.findElement(By.id("cadastrar"));
+        actions.moveToElement(submitButton17).perform();
+        Thread.sleep(2000);
+        submitButton17.click();
+        Thread.sleep(2000);
+        WebElement botaoVoltar21 = driver.findElement(By.id("botaoVoltar"));
+        actions.moveToElement(botaoVoltar21).perform();
+        Thread.sleep(1000);
+        botaoVoltar21.click();
+
         WebElement motivoCategoriaSelect2 = driver.findElement(By.id("motivoCategoria"));
         Select motivoCategoria2 = new Select(motivoCategoriaSelect2);
         motivoCategoria2.selectByVisibleText("Vinhos Extraviados");
