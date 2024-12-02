@@ -76,7 +76,8 @@ public class CadastroClienteTeste {
         Select genero = new Select(generoSelect);
         genero.selectByVisibleText(cliente.getGenero().toString());
         Thread.sleep(300);
-        driver.findElement(By.id("data-nascimento")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format(cliente.getDataNascimento()));
+        driver.findElement(By.id("data-nascimento")).sendKeys(new SimpleDateFormat("dd/MM/yyyy")
+                .format(cliente.getDataNascimento()));
         Thread.sleep(300);
         Select tiporesidRes = new Select(driver.findElement(By.id("tiporesidRes")));
         Thread.sleep(300);
@@ -92,13 +93,16 @@ public class CadastroClienteTeste {
         Thread.sleep(300);
         driver.findElement(By.id("endResBairro")).sendKeys(cliente.getEndResid().getBairro().getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endResCidade")).sendKeys(cliente.getEndResid().getBairro().getCidade().getNome());
+        driver.findElement(By.id("endResCidade")).sendKeys(cliente.getEndResid().getBairro().getCidade()
+                .getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endResEst")).sendKeys(cliente.getEndResid().getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endResEst")).sendKeys(cliente.getEndResid().getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endResCep")).sendKeys(cliente.getEndResid().getCep());
         Thread.sleep(300);
-        driver.findElement(By.id("endResPais")).sendKeys(cliente.getEndResid().getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endResPais")).sendKeys(cliente.getEndResid().getBairro().getCidade()
+                .getEstado().getPais().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endResObs")).sendKeys(cliente.getEndResid().getObs());
         Thread.sleep(2000);
@@ -130,13 +134,16 @@ public class CadastroClienteTeste {
         Thread.sleep(300);
         driver.findElement(By.id("endCobBairro")).sendKeys(cliente.getEndCob().getBairro().getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endCobCidade")).sendKeys(cliente.getEndCob().getBairro().getCidade().getNome());
+        driver.findElement(By.id("endCobCidade")).sendKeys(cliente.getEndCob().getBairro().getCidade()
+                .getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endCobEst")).sendKeys(cliente.getEndCob().getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endCobEst")).sendKeys(cliente.getEndCob().getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endCobCep")).sendKeys(cliente.getEndCob().getCep());
         Thread.sleep(300);
-            driver.findElement(By.id("endCobPais")).sendKeys(cliente.getEndCob().getBairro().getCidade().getEstado().getPais().getNome());
+            driver.findElement(By.id("endCobPais")).sendKeys(cliente.getEndCob().getBairro().getCidade()
+                    .getEstado().getPais().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endCobObs")).sendKeys(cliente.getEndCob().getObs());
         Thread.sleep(2000);
@@ -168,13 +175,16 @@ public class CadastroClienteTeste {
         Thread.sleep(300);
         driver.findElement(By.id("endEntBairro1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntCidade1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getNome());
+        driver.findElement(By.id("endEntCidade1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade()
+                .getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntEst1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endEntEst1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endEntCep1")).sendKeys(cliente.getEndEnt().get(0).getCep());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntPais1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endEntPais1")).sendKeys(cliente.getEndEnt().get(0).getBairro().getCidade()
+                .getEstado().getPais().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endEntObs1")).sendKeys(cliente.getEndEnt().get(0).getObs());
         Thread.sleep(2000);
@@ -200,13 +210,16 @@ public class CadastroClienteTeste {
         Thread.sleep(300);
         driver.findElement(By.id("endEntBairro2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntCidade2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade().getNome());
+        driver.findElement(By.id("endEntCidade2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade()
+                .getNome());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntEst2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endEntEst2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endEntCep2")).sendKeys(cliente.getEndEnt().get(1).getCep());
         Thread.sleep(300);
-        driver.findElement(By.id("endEntPais2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endEntPais2")).sendKeys(cliente.getEndEnt().get(1).getBairro().getCidade()
+                .getEstado().getPais().getNome());
         Thread.sleep(300);
         driver.findElement(By.id("endEntObs2")).sendKeys(cliente.getEndEnt().get(1).getObs());
         Thread.sleep(2000);
@@ -229,7 +242,8 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("cartaoNome1")).sendKeys(cliente.getCartoes().get(0).getNome());
         Thread.sleep(300);
         Select bandeira1 = new Select(driver.findElement(By.id("bandeira1")));
-        bandeira1.selectByVisibleText(cliente.getCartoes().get(0).getBandeira().toString().replace("_", " "));
+        bandeira1.selectByVisibleText(cliente.getCartoes().get(0).getBandeira().toString()
+                .replace("_", " "));
         Thread.sleep(300);
         driver.findElement(By.id("cartaoNum1")).sendKeys(cliente.getCartoes().get(0).getNumero());
         Thread.sleep(300);
@@ -244,7 +258,8 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("cartaoNome2")).sendKeys(cliente.getCartoes().get(1).getNome());
         Thread.sleep(300);
         Select bandeira2 = new Select(driver.findElement(By.id("bandeira2")));
-        bandeira2.selectByVisibleText(cliente.getCartoes().get(1).getBandeira().toString().replace("_", " "));
+        bandeira2.selectByVisibleText(cliente.getCartoes().get(1).getBandeira().toString()
+                .replace("_", " "));
         Thread.sleep(300);
         driver.findElement(By.id("cartaoNum2")).sendKeys(cliente.getCartoes().get(1).getNumero());
         Thread.sleep(300);
@@ -324,7 +339,9 @@ public class CadastroClienteTeste {
         WebElement consultarCliente2 = driver.findElement(By.id("consultarCliente"));
         actions.moveToElement(consultarCliente2).perform();
         consultarCliente2.click();
-        driver.findElement(By.id("filtro")).sendKeys(cliente.getEndResid().getTipoLograd() + " " + cliente.getEndResid().getLogradouro() + " " + cliente.getEndResid().getBairro().getCidade().getNome());
+        driver.findElement(By.id("filtro")).sendKeys(cliente.getEndResid()
+                .getTipoLograd() + " " + cliente.getEndResid().getLogradouro() + " " + cliente
+                .getEndResid().getBairro().getCidade().getNome());
         WebElement buscarClientes2 = driver.findElement(By.id("btnConsultar"));
         actions.moveToElement(buscarClientes2).perform();
         buscarClientes2.click();
@@ -350,11 +367,11 @@ public class CadastroClienteTeste {
 
 
 
-        WebElement alterarDadosButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Alterar Dados Cadastrais')]")));
+        WebElement alterarDadosCadastraisBtn2 = driver.findElement(By.id("alterarDadosCadastraisBtn"));
+        actions.moveToElement(alterarDadosCadastraisBtn2).perform();
         Thread.sleep(2000);
-        actions.moveToElement(alterarDadosButton).perform();
-        Thread.sleep(2000);
-        alterarDadosButton.click();
+        alterarDadosCadastraisBtn2.click();
+
 
         driver.findElement(By.id("nome")).clear();
         driver.findElement(By.id("nome")).sendKeys(cliente2.getNome());
@@ -367,7 +384,8 @@ public class CadastroClienteTeste {
         genero2.selectByVisibleText(cliente2.getGenero().toString());
         Thread.sleep(250);
         driver.findElement(By.id("data-nascimento")).clear();
-        driver.findElement(By.id("data-nascimento")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format(cliente2.getDataNascimento()));
+        driver.findElement(By.id("data-nascimento")).sendKeys(new SimpleDateFormat("dd/MM/yyyy")
+                .format(cliente2.getDataNascimento()));
         Thread.sleep(250);
         driver.findElement(By.id("email")).clear();
         driver.findElement(By.id("email")).sendKeys(cliente2.getContato().getEmail());
@@ -381,10 +399,10 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("numerotel")).clear();
         driver.findElement(By.id("numerotel")).sendKeys(cliente2.getContato().getTelefone().getNumero().toString());
         Thread.sleep(250);
-        WebElement salvarAlteracoesButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alterações']")));
-        actions.moveToElement(salvarAlteracoesButton).perform();
+        WebElement salvarAlteracoesButton3 = driver.findElement(By.id("salvarAlteracoes"));
+        actions.moveToElement(salvarAlteracoesButton3).perform();
         Thread.sleep(2000);
-        salvarAlteracoesButton.click();
+        salvarAlteracoesButton3.click();
         WebElement botaoVoltar = driver.findElement(By.id("botaoVoltar"));
         actions.moveToElement(botaoVoltar).perform();
         Thread.sleep(1000);
@@ -422,16 +440,19 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("endResBairro")).sendKeys(cliente2.getEndResid().getBairro().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endResCidade")).clear();
-        driver.findElement(By.id("endResCidade")).sendKeys(cliente2.getEndResid().getBairro().getCidade().getNome());
+        driver.findElement(By.id("endResCidade")).sendKeys(cliente2.getEndResid().getBairro().getCidade()
+                .getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endResEst")).clear();
-        driver.findElement(By.id("endResEst")).sendKeys(cliente2.getEndResid().getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endResEst")).sendKeys(cliente2.getEndResid().getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endResCep")).clear();
         driver.findElement(By.id("endResCep")).sendKeys(cliente2.getEndResid().getCep());
         Thread.sleep(250);
         driver.findElement(By.id("endResPais")).clear();
-        driver.findElement(By.id("endResPais")).sendKeys(cliente2.getEndResid().getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endResPais")).sendKeys(cliente2.getEndResid().getBairro().getCidade()
+                .getEstado().getPais().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endResObs")).clear();
         driver.findElement(By.id("endResObs")).sendKeys(cliente2.getEndResid().getObs());
@@ -454,16 +475,19 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("endCobBairro")).sendKeys(cliente2.getEndCob().getBairro().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endCobCidade")).clear();
-        driver.findElement(By.id("endCobCidade")).sendKeys(cliente2.getEndCob().getBairro().getCidade().getNome());
+        driver.findElement(By.id("endCobCidade")).sendKeys(cliente2.getEndCob().getBairro().getCidade()
+                .getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endCobEst")).clear();
-        driver.findElement(By.id("endCobEst")).sendKeys(cliente2.getEndCob().getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endCobEst")).sendKeys(cliente2.getEndCob().getBairro().getCidade()
+                .getEstado().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endCobCep")).clear();
         driver.findElement(By.id("endCobCep")).sendKeys(cliente2.getEndCob().getCep());
         Thread.sleep(250);
         driver.findElement(By.id("endCobPais")).clear();
-        driver.findElement(By.id("endCobPais")).sendKeys(cliente2.getEndCob().getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endCobPais")).sendKeys(cliente2.getEndCob().getBairro().getCidade()
+                .getEstado().getPais().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endCobObs")).clear();
         driver.findElement(By.id("endCobObs")).sendKeys(cliente2.getEndCob().getObs());
@@ -491,16 +515,19 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("endEntBairro1")).sendKeys(cliente2.getEndEnt().get(0).getBairro().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endEntCidade1")).clear();
-        driver.findElement(By.id("endEntCidade1")).sendKeys(cliente2.getEndEnt().get(0).getBairro().getCidade().getNome());
+        driver.findElement(By.id("endEntCidade1")).sendKeys(cliente2.getEndEnt().get(0).getBairro()
+                .getCidade().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endEntEst1")).clear();
-        driver.findElement(By.id("endEntEst1")).sendKeys(cliente2.getEndEnt().get(0).getBairro().getCidade().getEstado().getNome());
+        driver.findElement(By.id("endEntEst1")).sendKeys(cliente2.getEndEnt().get(0).getBairro()
+                .getCidade().getEstado().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endEntCep1")).clear();
         driver.findElement(By.id("endEntCep1")).sendKeys(cliente2.getEndEnt().get(0).getCep());
         Thread.sleep(250);
         driver.findElement(By.id("endEntPais1")).clear();
-        driver.findElement(By.id("endEntPais1")).sendKeys(cliente2.getEndEnt().get(0).getBairro().getCidade().getEstado().getPais().getNome());
+        driver.findElement(By.id("endEntPais1")).sendKeys(cliente2.getEndEnt().get(0).getBairro()
+                .getCidade().getEstado().getPais().getNome());
         Thread.sleep(250);
         driver.findElement(By.id("endEntObs1")).clear();
         driver.findElement(By.id("endEntObs1")).sendKeys(cliente2.getEndEnt().get(0).getObs());
@@ -534,17 +561,18 @@ public class CadastroClienteTeste {
         driver.findElement(By.id("cartaoNome1")).sendKeys(cliente2.getCartoes().get(0).getNome());
         Thread.sleep(200);
         Select bandeira3 = new Select(driver.findElement(By.id("bandeira1")));
-        bandeira3.selectByVisibleText(cliente2.getCartoes().get(0).getBandeira().toString().replace("_", " "));
+        bandeira3.selectByVisibleText(cliente2.getCartoes().get(0).getBandeira().toString()
+                .replace("_", " "));
         driver.findElement(By.id("cartaoNum1")).clear();
         driver.findElement(By.id("cartaoNum1")).sendKeys(cliente2.getCartoes().get(0).getNumero());
         Thread.sleep(250);
         driver.findElement(By.id("cartaoCodSeg1")).clear();
         driver.findElement(By.id("cartaoCodSeg1")).sendKeys(cliente2.getCartoes().get(0).getCod().toString());
         Thread.sleep(1000);
-        WebElement salvarAlteracoesButton3 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alteracoes']")));
-        actions.moveToElement(salvarAlteracoesButton3).perform();
+        WebElement salvarAlteracoesButton4 = driver.findElement(By.id("salvarAlteracoes"));
+        actions.moveToElement(salvarAlteracoesButton4).perform();
         Thread.sleep(2000);
-        salvarAlteracoesButton3.click();
+        salvarAlteracoesButton4.click();
         WebElement botaoVoltar5 = driver.findElement(By.id("botaoVoltar"));
         actions.moveToElement(botaoVoltar5).perform();
         Thread.sleep(1000);
@@ -568,10 +596,10 @@ public class CadastroClienteTeste {
 
         driver.findElement(By.id("senha")).sendKeys(cliente2.getSenha());
         driver.findElement(By.id("confirmaSenha")).sendKeys(cliente2.getSenha());
-        WebElement salvarAlteracoesButton4 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='form-group col-md-8']//button[text()='Salvar Alterações']")));
-        actions.moveToElement(salvarAlteracoesButton4).perform();
+        WebElement salvarAlteracoesButton5 = driver.findElement(By.id("salvarAlteracoes"));
+        actions.moveToElement(salvarAlteracoesButton5).perform();
         Thread.sleep(2000);
-        salvarAlteracoesButton4.click();
+        salvarAlteracoesButton5.click();
         WebElement botaoVoltar7 = driver.findElement(By.id("botaoVoltar"));
         actions.moveToElement(botaoVoltar7).perform();
         Thread.sleep(1000);

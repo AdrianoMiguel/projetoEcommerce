@@ -245,7 +245,8 @@ public class CadastroProdutoTeste {
 
         WebElement motivoCategoriaSelect = driver.findElement(By.id("motivoCategoria"));
         Select motivoCategoria = new Select(motivoCategoriaSelect);
-        motivoCategoria.selectByVisibleText(vinho.getMotivo().getCategoria().toString().replace("_", " "));
+        motivoCategoria.selectByVisibleText(vinho.getMotivo().getCategoria()
+                .toString().replace("_", " "));
         Thread.sleep(300);
 
         WebElement submitButton15 = driver.findElement(By.id("cadastrar"));
@@ -258,7 +259,8 @@ public class CadastroProdutoTeste {
         Thread.sleep(1000);
         botaoVoltar19.click();
 
-        driver.findElement(By.id("justificativa")).sendKeys(vinho.getMotivo().getJustificativa());
+        driver.findElement(By.id("justificativa")).sendKeys(vinho.getMotivo()
+                .getJustificativa());
         Thread.sleep(300);
 
         // Submeter o formulário
@@ -276,7 +278,9 @@ public class CadastroProdutoTeste {
         consultarCliente2.click();
         driver.findElement(By.id("filtro")).sendKeys(vinho.getSafra().toString() + " "
                 + vinho.getPais().toString().replace("_", " ") + " " +
-                vinho.getTipoVinho().toString() + " " + vinho.getTipoUva().toString().replace("[", "").replace("]", "").replace(",", ""));
+                vinho.getTipoVinho().toString() + " " + vinho.getTipoUva().toString()
+                .replace("[", "").replace("]", "")
+                .replace(",", ""));
         WebElement buscarClientes2 = driver.findElement(By.id("btnConsultar"));
         actions.moveToElement(buscarClientes2).perform();
         Thread.sleep(4000);
@@ -353,7 +357,8 @@ public class CadastroProdutoTeste {
         Thread.sleep(300);
         WebElement motivoCategoriaSelect3 = driver.findElement(By.id("motivoCategoria"));
         Select motivoCategoria3 = new Select(motivoCategoriaSelect3);
-        motivoCategoria3.selectByVisibleText(vinho.getMotivo().getCategoria().toString().replace("_", " "));
+        motivoCategoria3.selectByVisibleText(vinho.getMotivo().getCategoria()
+                .toString().replace("_", " "));
         Thread.sleep(300);
         driver.findElement(By.id("justificativa")).clear();
         driver.findElement(By.id("justificativa")).sendKeys(vinho.getMotivo().getJustificativa());
@@ -374,8 +379,6 @@ public class CadastroProdutoTeste {
         Thread.sleep(2000);
         detalhesButton.click();
         Thread.sleep(3000);
-
-
 
         WebElement adminDropdown4 = driver.findElement(By.id("adminDropdown"));
         actions.moveToElement(adminDropdown4).perform();
